@@ -113,9 +113,7 @@
         <a href="#docs-hub" class="hover:text-slate-900 transition">Specification</a>
         <a href="#glossary" class="hover:text-slate-900 transition">Standards</a>
         <a href="#infrastructure" class="hover:text-slate-900 transition">Workbench</a>
-        <a href="#co-design" class="text-indigo-600 hover:text-indigo-800 font-semibold flex items-center gap-1">
-          <i data-lucide="check-square" class="w-4 h-4"></i> Co-Design
-        </a>
+        <a href="#how-it-works" class="hover:text-slate-900 transition">How It Works</a>
         <a href="#artifacts" class="hover:text-slate-900 transition">Outputs</a>
       </nav>
 
@@ -534,127 +532,132 @@
   </section>
 
   <!-- ========================================================================= -->
-  <!-- SECTION 5: INTERACTIVE CO-DESIGN WORKING SESSION TOOL -->
+  <!-- SECTION 5: HOW IT WORKS — THE PROVENANCE LOOP -->
   <!-- ========================================================================= -->
-  <section id="co-design" class="space-y-6 pt-6 border-t border-slate-200">
+  <section id="how-it-works" class="space-y-6 pt-6 border-t border-slate-200">
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
-      <div>
-        <span class="text-xs font-mono font-bold text-indigo-600 uppercase tracking-wider block">Co-Design Working Session</span>
-        <h2 class="text-2xl sm:text-3xl font-display font-bold text-slate-900 mt-1">Governance &amp; Policy Matrix</h2>
-        <p class="text-sm sm:text-base text-slate-500 mt-1">Select preferred collaboration policies during the working session and copy an exportable decision manifest. The pre-selected options below are strawman starting proposals for discussion, not settled decisions — nothing is final until the working session.</p>
+      <div class="max-w-2xl">
+        <span class="text-xs font-mono font-bold text-indigo-600 uppercase tracking-wider block">How It Works</span>
+        <h2 class="text-2xl sm:text-3xl font-display font-bold text-slate-900 mt-1">The Provenance Loop</h2>
+        <p class="text-sm sm:text-base text-slate-500 mt-1">A big-picture map of how the pieces fit together — from a lab's first policy decisions to a citable, DOI'd record. Governance policy and channel setup are still being finalized in the co-design working session; this is a map of that process, not a control panel for it.</p>
       </div>
-      <div class="flex items-center gap-2">
-        <button onclick="resetDecisions()" class="px-3.5 py-2 text-xs sm:text-sm font-mono rounded-lg border border-slate-200 bg-white hover:bg-slate-50 transition text-slate-700 font-semibold">
-          Reset
-        </button>
-        <button onclick="exportDecisionsSummary()" class="px-4 py-2 text-xs sm:text-sm font-mono font-bold rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition flex items-center gap-2 shadow-sm">
-          <i data-lucide="copy" class="w-4 h-4"></i> Copy Decision Manifest
-        </button>
-      </div>
+      <a href="questions.html" class="shrink-0 text-sm font-mono text-indigo-600 hover:text-indigo-800 font-semibold flex items-center gap-1.5 transition">
+        Open Questions &amp; Roadmap <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
     </div>
 
-    <!-- Decision Cards Grid -->
-    <div class="space-y-4">
+    <div class="rounded-xl border border-slate-200 bg-white p-6 sm:p-8 lg:p-10 space-y-8">
 
-      <!-- Decision 1 -->
-      <div class="data-card rounded-xl p-6 space-y-4">
-        <div class="flex items-center justify-between">
-          <span class="text-xs font-mono font-bold text-indigo-600 uppercase">Item 01 // Contribution Measurement</span>
-          <span id="badge-q1" class="text-xs font-mono px-3 py-1 rounded bg-teal-50 text-teal-700 font-bold border border-teal-200">Active: NISO CRediT Roles</span>
+      <!-- Tier 1: Set up once -->
+      <div class="space-y-4">
+        <div class="flex items-center gap-3">
+          <span class="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider">Set Up Once, Together</span>
+          <span class="h-px flex-1 bg-slate-100"></span>
         </div>
-        <h4 class="text-base font-display font-bold text-slate-900">How should scientific effort be credited across channels?</h4>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5 pt-1">
-          <label class="flex items-start gap-3.5 p-4 rounded-lg bg-slate-50 border border-slate-200 cursor-pointer hover:border-indigo-600 transition">
-            <input type="radio" name="opt_q1" value="credit_milestones" checked onchange="updateDecision('q1', 'NISO CRediT Tagged at Milestones (Recommended)', 'badge-q1')" class="mt-1 text-indigo-600">
-            <div>
-              <strong class="text-sm text-slate-900 block font-semibold">CRediT Tagging at Milestones (Recommended)</strong>
-              <span class="text-xs sm:text-sm text-slate-600 block mt-1">Contributors tag roles (Methodology, Software, Writing) at milestone closeouts. Activity counts remain non-evaluative.</span>
-            </div>
-          </label>
-          <label class="flex items-start gap-3.5 p-4 rounded-lg bg-slate-50 border border-slate-200 cursor-pointer hover:border-indigo-600 transition">
-            <input type="radio" name="opt_q1" value="lead_adjudication" onchange="updateDecision('q1', 'Lead Researcher Review of Activity Summaries', 'badge-q1')" class="mt-1 text-indigo-600">
-            <div>
-              <strong class="text-sm text-slate-900 block font-semibold">Lead Researcher Review of Activity Summaries</strong>
-              <span class="text-xs sm:text-sm text-slate-600 block mt-1">Project leads review an automated digest and allocate contribution roles prior to manuscript export.</span>
-            </div>
-          </label>
-        </div>
-        <p class="text-xs text-slate-500 pt-1">Either option still leaves dispute resolution for contested tags undecided — see <a href="questions.html#agenda-attribution" class="text-indigo-600 hover:underline">Open Questions, Item 1b</a>.</p>
-      </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
-      <!-- Decision 2 -->
-      <div class="data-card rounded-xl p-6 space-y-4">
-        <div class="flex items-center justify-between">
-          <span class="text-xs font-mono font-bold text-indigo-600 uppercase">Item 02 // AI Manuscript Disclosure</span>
-          <span id="badge-q2" class="text-xs font-mono px-3 py-1 rounded bg-teal-50 text-teal-700 font-bold border border-teal-200">Active: Rendered AI Statement</span>
-        </div>
-        <h4 class="text-base font-display font-bold text-slate-900">How should AI assistance appear in published outputs?</h4>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5 pt-1">
-          <label class="flex items-start gap-3.5 p-4 rounded-lg bg-slate-50 border border-slate-200 cursor-pointer hover:border-indigo-600 transition">
-            <input type="radio" name="opt_q2" value="rendered_disclosure" checked onchange="updateDecision('q2', 'Automated AI Assistance Section (Human Byline Only)', 'badge-q2')" class="mt-1 text-indigo-600">
-            <div>
-              <strong class="text-sm text-slate-900 block font-semibold">Automated AI Statement (Recommended)</strong>
-              <span class="text-xs sm:text-sm text-slate-600 block mt-1">Human-only byline; automated section detailing model, prompt date, and specific text/code generated.</span>
+          <div class="flex items-start gap-4 p-5 rounded-lg bg-slate-50 border border-slate-200">
+            <div class="w-10 h-10 rounded-lg bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600 shrink-0">
+              <i data-lucide="shield-check" class="w-5 h-5"></i>
             </div>
-          </label>
-          <label class="flex items-start gap-3.5 p-4 rounded-lg bg-slate-50 border border-slate-200 cursor-pointer hover:border-indigo-600 transition">
-            <input type="radio" name="opt_q2" value="graph_metadata_only" onchange="updateDecision('q2', 'PROV-O Graph Metadata Only', 'badge-q2')" class="mt-1 text-indigo-600">
-            <div>
-              <strong class="text-sm text-slate-900 block font-semibold">Graph Metadata Only</strong>
-              <span class="text-xs sm:text-sm text-slate-600 block mt-1">AI interactions live only in JSON-LD / PROV-O provenance graph without altering manuscript text.</span>
+            <div class="space-y-1.5">
+              <h3 class="text-base font-display font-bold text-slate-900">1. Decide Governance</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">The lab or community sets attribution rules, consent posture, and quorum policy in a working session — the platform doesn't assume defaults for you.</p>
+              <a href="questions.html" class="text-xs font-mono font-semibold text-indigo-600 hover:text-indigo-800 transition inline-flex items-center gap-1 pt-0.5">Open governance questions <i data-lucide="arrow-right" class="w-3 h-3"></i></a>
             </div>
-          </label>
+          </div>
+
+          <div class="flex items-start gap-4 p-5 rounded-lg bg-slate-50 border border-slate-200">
+            <div class="w-10 h-10 rounded-lg bg-teal-50 border border-teal-100 flex items-center justify-center text-teal-700 shrink-0">
+              <i data-lucide="link-2" class="w-5 h-5"></i>
+            </div>
+            <div class="space-y-1.5">
+              <h3 class="text-base font-display font-bold text-slate-900">2. Connect Channels</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">Discord and GitHub are wired in today; Google Docs, meeting transcripts, and email follow as adapters land.</p>
+              <a href="foundation.html#channels" class="text-xs font-mono font-semibold text-teal-700 hover:text-teal-900 transition inline-flex items-center gap-1 pt-0.5">See channel readiness <i data-lucide="arrow-right" class="w-3 h-3"></i></a>
+            </div>
+          </div>
+
         </div>
       </div>
 
-      <!-- Decision 3 -->
-      <div class="data-card rounded-xl p-6 space-y-4">
-        <div class="flex items-center justify-between">
-          <span class="text-xs font-mono font-bold text-indigo-600 uppercase">Item 03 // Privacy &amp; Email Ingestion</span>
-          <span id="badge-q3" class="text-xs font-mono px-3 py-1 rounded bg-teal-50 text-teal-700 font-bold border border-teal-200">Active: Explicit CC Address</span>
-        </div>
-        <h4 class="text-base font-display font-bold text-slate-900">What is the consent threshold for capturing email discussions?</h4>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5 pt-1">
-          <label class="flex items-start gap-3.5 p-4 rounded-lg bg-slate-50 border border-slate-200 cursor-pointer hover:border-indigo-600 transition">
-            <input type="radio" name="opt_q3" value="explicit_cc" checked onchange="updateDecision('q3', 'Explicit Project CC Address Only', 'badge-q3')" class="mt-1 text-indigo-600">
-            <div>
-              <strong class="text-sm text-slate-900 block font-semibold">Explicit CC Address (Opt-In / Safe)</strong>
-              <span class="text-xs sm:text-sm text-slate-600 block mt-1">Ingestion occurs only when a project archive address is copied. External senders are scrubbed.</span>
-            </div>
-          </label>
-          <label class="flex items-start gap-3.5 p-4 rounded-lg bg-slate-50 border border-slate-200 cursor-pointer hover:border-indigo-600 transition">
-            <input type="radio" name="opt_q3" value="mailbox_label" onchange="updateDecision('q3', 'Personal Mailbox Label Sync', 'badge-q3')" class="mt-1 text-indigo-600">
-            <div>
-              <strong class="text-sm text-slate-900 block font-semibold">Personal Mailbox Labeling</strong>
-              <span class="text-xs sm:text-sm text-slate-600 block mt-1">Researchers label threads in Gmail. Requires automated regex PII scrubbers for third-party senders.</span>
-            </div>
-          </label>
-        </div>
-        <p class="text-xs text-slate-500 pt-1">Either option relies on pre-publication review as the main safeguard; what to do if a privacy problem surfaces after a DOI already exists remains unresolved — see <a href="questions.html#agenda-consent" class="text-indigo-600 hover:underline">Open Questions, Item 2c</a>.</p>
+      <div class="flex justify-center text-slate-300">
+        <i data-lucide="arrow-down" class="w-5 h-5"></i>
       </div>
 
-      <!-- Decision 4 -->
-      <div class="data-card rounded-xl p-6 space-y-4">
-        <div class="flex items-center justify-between">
-          <span class="text-xs font-mono font-bold text-indigo-600 uppercase">Item 04 // Phase 1 Pilot Scope</span>
-          <span id="badge-q4" class="text-xs font-mono px-3 py-1 rounded bg-teal-50 text-teal-700 font-bold border border-teal-200">Active: Dual Stanford &amp; ONM Pilot</span>
+      <!-- Tier 2: The ongoing loop -->
+      <div class="space-y-4">
+        <div class="flex items-center gap-3">
+          <span class="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider">Then It Runs On Its Own</span>
+          <span class="h-px flex-1 bg-slate-100"></span>
         </div>
-        <h4 class="text-base font-display font-bold text-slate-900">Which collaborative environment serves as the initial deployment target?</h4>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5 pt-1">
-          <label class="flex items-start gap-3.5 p-4 rounded-lg bg-slate-50 border border-slate-200 cursor-pointer hover:border-indigo-600 transition">
-            <input type="radio" name="opt_q4" value="dual_pilot" checked onchange="updateDecision('q4', 'Dual Deployment: Stanford Lab + ONM Community Group', 'badge-q4')" class="mt-1 text-indigo-600">
-            <div>
-              <strong class="text-sm text-slate-900 block font-semibold">Dual Deployment (Recommended)</strong>
-              <span class="text-xs sm:text-sm text-slate-600 block mt-1">Deploy simultaneously for Sébastien Proulx's Stanford experimental benchmark workstreams and 1 active Open Neuromorphic community working group.</span>
+
+        <div class="flex flex-col lg:flex-row items-stretch gap-3">
+
+          <div class="flex-1 flex flex-col gap-3 p-5 rounded-lg bg-slate-50 border border-slate-200">
+            <div class="w-10 h-10 rounded-lg bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-700">
+              <i data-lucide="activity" class="w-5 h-5"></i>
             </div>
-          </label>
-          <label class="flex items-start gap-3.5 p-4 rounded-lg bg-slate-50 border border-slate-200 cursor-pointer hover:border-indigo-600 transition">
-            <input type="radio" name="opt_q4" value="lab_only" onchange="updateDecision('q4', 'Stanford Neuroscience Workbench Only', 'badge-q4')" class="mt-1 text-indigo-600">
-            <div>
-              <strong class="text-sm text-slate-900 block font-semibold">Single-Lab Deployment</strong>
-              <span class="text-xs sm:text-sm text-slate-600 block mt-1">Focus exclusively on internal lab experimental suites, manuscript drafting, and student mentorship tracking.</span>
+            <div class="space-y-1.5">
+              <h3 class="text-base font-display font-bold text-slate-900">3. Capture</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">Messages, commits, reviews, and reactions are logged automatically, in the tools people already use — no new habit required.</p>
+              <a href="foundation.html" class="text-xs font-mono font-semibold text-slate-600 hover:text-slate-900 transition inline-flex items-center gap-1 pt-0.5">See what's running today <i data-lucide="arrow-right" class="w-3 h-3"></i></a>
             </div>
-          </label>
+          </div>
+
+          <div class="flex items-center justify-center text-slate-300 shrink-0">
+            <i data-lucide="arrow-right" class="hidden lg:block w-5 h-5"></i>
+            <i data-lucide="arrow-down" class="block lg:hidden w-5 h-5"></i>
+          </div>
+
+          <div class="flex-1 flex flex-col gap-3 p-5 rounded-lg bg-slate-50 border border-slate-200">
+            <div class="w-10 h-10 rounded-lg bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600">
+              <i data-lucide="search" class="w-5 h-5"></i>
+            </div>
+            <div class="space-y-1.5">
+              <h3 class="text-base font-display font-bold text-slate-900">4. Query</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">Researchers — and their LLMs — pull scoped, token-budgeted Context Bundles grounded in the verified log, instead of stale memory.</p>
+              <a href="model.html" class="text-xs font-mono font-semibold text-indigo-600 hover:text-indigo-800 transition inline-flex items-center gap-1 pt-0.5">See the data model <i data-lucide="arrow-right" class="w-3 h-3"></i></a>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-center text-slate-300 shrink-0">
+            <i data-lucide="arrow-right" class="hidden lg:block w-5 h-5"></i>
+            <i data-lucide="arrow-down" class="block lg:hidden w-5 h-5"></i>
+          </div>
+
+          <div class="flex-1 flex flex-col gap-3 p-5 rounded-lg bg-slate-50 border border-slate-200">
+            <div class="w-10 h-10 rounded-lg bg-amber-50 border border-amber-100 flex items-center justify-center text-amber-700">
+              <i data-lucide="message-square" class="w-5 h-5"></i>
+            </div>
+            <div class="space-y-1.5">
+              <h3 class="text-base font-display font-bold text-slate-900">5. Discuss &amp; Decide</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">Thread discussions resolve into structured Decision records and milestone CRediT tags — an auditable trail, not a raw message count.</p>
+              <a href="model.html#decision" class="text-xs font-mono font-semibold text-amber-700 hover:text-amber-900 transition inline-flex items-center gap-1 pt-0.5">See Decision records <i data-lucide="arrow-right" class="w-3 h-3"></i></a>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-center text-slate-300 shrink-0">
+            <i data-lucide="arrow-right" class="hidden lg:block w-5 h-5"></i>
+            <i data-lucide="arrow-down" class="block lg:hidden w-5 h-5"></i>
+          </div>
+
+          <div class="flex-1 flex flex-col gap-3 p-5 rounded-lg bg-slate-50 border border-slate-200">
+            <div class="w-10 h-10 rounded-lg bg-teal-50 border border-teal-100 flex items-center justify-center text-teal-700">
+              <i data-lucide="archive" class="w-5 h-5"></i>
+            </div>
+            <div class="space-y-1.5">
+              <h3 class="text-base font-display font-bold text-slate-900">6. Publish</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">Reviewed, checksummed bundles are packaged as an RO-Crate and deposited to Zenodo for a persistent, citable DOI.</p>
+              <a href="standards.html#ro-crate-packaging" class="text-xs font-mono font-semibold text-teal-700 hover:text-teal-900 transition inline-flex items-center gap-1 pt-0.5">See standards alignment <i data-lucide="arrow-right" class="w-3 h-3"></i></a>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="flex items-start gap-2 text-xs text-slate-500 pt-1">
+          <i data-lucide="repeat" class="w-3.5 h-3.5 text-slate-400 shrink-0 mt-0.5"></i>
+          <span>New discussion and commits keep feeding back into Capture — this loop runs for the life of the project, not as a one-off export.</span>
         </div>
       </div>
 
@@ -819,52 +822,6 @@
 <script>
   lucide.createIcons();
 
-  const decisions = {
-    q1: "NISO CRediT Tagged at Milestones (Recommended)",
-    q2: "Automated AI Assistance Section (Human Byline Only)",
-    q3: "Explicit Project CC Address Only",
-    q4: "Dual Deployment: Stanford Lab + ONM Community Group"
-  };
-
-  function updateDecision(key, value, badgeId) {
-    decisions[key] = value;
-    const badge = document.getElementById(badgeId);
-    if (badge) {
-      badge.innerText = "Selected: " + value.split('(')[0].trim();
-      badge.className = "text-xs font-mono px-3 py-1 rounded bg-teal-50 text-teal-700 font-bold border border-teal-200";
-    }
-  }
-
-  function resetDecisions() {
-    document.querySelectorAll('input[type="radio"]').forEach(el => el.checked = false);
-    decisions.q1 = "Pending";
-    decisions.q2 = "Pending";
-    decisions.q3 = "Pending";
-    decisions.q4 = "Pending";
-
-    ['badge-q1', 'badge-q2', 'badge-q3', 'badge-q4'].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) {
-        el.innerText = "Status: Pending";
-        el.className = "text-xs font-mono px-3 py-1 rounded bg-slate-100 border border-slate-200 text-slate-500 font-medium";
-      }
-    });
-  }
-
-  function exportDecisionsSummary() {
-    const summary = `=== PROCESS AS PROVENANCE: CO-DESIGN DECISION MANIFEST ===\nDate: ${new Date().toISOString()}\n\n` +
-      `1. Contribution Measurement: ${decisions.q1}\n` +
-      `2. AI Disclosure Policy: ${decisions.q2}\n` +
-      `3. Email Consent Posture: ${decisions.q3}\n` +
-      `4. Pilot Scope: ${decisions.q4}\n\n` +
-      `Standard Alignment: W3C PROV-O, NISO CRediT, RO-Crate 1.1\n` +
-      `Stakeholders: Stanford University (Sébastien Proulx) & Open Neuromorphic Community`;
-
-    navigator.clipboard.writeText(summary).then(() => {
-      alert("Decision Manifest copied to clipboard!\n\nYou can paste this directly into your meeting notes or project doc.");
-    });
-  }
-
   function switchTab(tabId) {
     ['tab-credit', 'tab-context', 'tab-rocrate'].forEach(t => {
       document.getElementById(t).classList.add('hidden');
@@ -886,8 +843,8 @@
       const el = document.getElementById(`tag-${t}`);
       if (el) {
         el.className = t === category
-          ? 'px-3 py-1 rounded bg-white font-bold text-slate-900 shadow-sm'
-          : 'px-3 py-1 rounded text-slate-600 hover:text-slate-900';
+                ? 'px-3 py-1 rounded bg-white font-bold text-slate-900 shadow-sm'
+                : 'px-3 py-1 rounded text-slate-600 hover:text-slate-900';
       }
     });
 
