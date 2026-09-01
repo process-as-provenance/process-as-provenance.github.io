@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Process as Provenance — Open Questions &amp; Roadmap</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div id="site-nav"></div>
+<div class="shell">
+  <div id="sidebar-mount"></div>
+  <main>
+    <div class="doc">
+
+      <p class="eyebrow">05 — Open Questions &amp; Roadmap</p>
+      <h1>Co-Design Session Agenda and Phased Implementation Plan</h1>
+      <p class="dek">Structured operational decisions to finalize between the Research Lead and Infrastructure Lead.</p>
+
+      <p class="lede">This document frames the concrete co-design agenda for our working session, structured across several policy groups, followed by a phased engineering roadmap. Groups A–D were the original agenda; Groups E–F and the flagged items in Group G were added following external review and have not yet been discussed by pilot stakeholders — they are logged here as open questions rather than decisions.</p>
+
+      <h2 id="agenda-attribution">Group A: Contribution Metrics &amp; CRediT Tagging</h2>
+      <div class="callout open">
+        <span class="callout-label">Decision Item 1</span>
+        <p><strong>Mechanisms for Scoring Effort:</strong> Raw event volume (Discord messages, GitHub commits) biases credit toward chattiness over architectural insight. We propose qualitative CRediT role tagging during milestone reviews, grounded by the event ledger. Does the Research Lead approve milestone role tagging as the primary attribution signal?</p>
+      </div>
+      <div class="callout open">
+        <span class="callout-label">Decision Item 1b</span>
+        <p><strong>Dispute Resolution for Contested Tags:</strong> Milestone tagging relocates the credit question rather than resolving it outright — it replaces "who posted the most" with "who ran the review, or who was in the room." Direction under consideration: role tags may be AI-assisted, drafted from the activity log as a starting suggestion, but always require human review before being recorded. For Open Neuromorphic specifically, the intent is to keep this as permissionless as possible, with contested tags resolved by community vote rather than a single reviewer's call. The exact appeals mechanism — who can contest a tag, and how a contest is settled — is not yet designed.</p>
+      </div>
+
+      <h2 id="agenda-consent">Group B: Privacy, Redaction, &amp; Email Ingestion</h2>
+      <div class="callout open">
+        <span class="callout-label">Decision Item 2</span>
+        <p><strong>Consent Posture for Email:</strong> Ingesting personal mailboxes creates privacy risks for untracked third parties. We propose Mode 1 (explicit CC to <code>archive@project.org</code>) with automated sender scrubbing. Is this posture sufficient for lab workflows?</p>
+      </div>
+      <div class="callout open">
+        <span class="callout-label">Decision Item 2b</span>
+        <p><strong>Pre-Publication Review as the Primary Safeguard:</strong> Before any bundle is packaged into an RO-Crate and deposited to Zenodo, the intent is that its exact drafted contents are circulated for human review and sign-off. This is the main defense against private material becoming a permanent, citable, DOI'd record — it happens while the bundle is still fully editable, before checksums are applied.</p>
+      </div>
+      <div class="callout open">
+        <span class="callout-label">Decision Item 2c — Unresolved</span>
+        <p><strong>Post-Publication Redaction:</strong> Pre-publication review doesn't cover everything — a privacy problem may only be discovered after a DOI has already been minted and the bundle checksummed. SHA-256 integrity guarantees and Zenodo's expectation of DOI permanence pull in the opposite direction from any promise to redact after the fact, and a more intensive redaction process would be needed in that case. We do not yet have a clear design for what that looks like. One candidate is a superseding, re-versioned crate with a new DOI and a tombstone notice on the original, but this has not been designed or agreed. Flagging this explicitly as open rather than assuming <code>prov:invalidatedBy</code> alone resolves it.</p>
+      </div>
+
+      <h2 id="agenda-governance">Group C: Editorial Publication Gates</h2>
+      <div class="callout open">
+        <span class="callout-label">Decision Item 3</span>
+        <p><strong>Authorization for Public Export:</strong> What quorum is required before an internal lab thread is bundled into an RO-Crate and deposited to Zenodo with a public DOI? (Recommended: Project lead or designated co-lead authorization).</p>
+      </div>
+
+      <h2 id="agenda-pilots">Group D: Pilot Selection &amp; Deployment Scope</h2>
+      <div class="callout open">
+        <span class="callout-label">Decision Item 4</span>
+        <p><strong>Phase 1 Deployment Scope:</strong> Selecting active Stanford neuroscience benchmark workstreams (Sébastien Proulx) and one Open Neuromorphic community working group to run the pilot pipeline and validate empirical workflows.</p>
+      </div>
+
+      <h2 id="agenda-decisions">Group E: Decision &amp; Voting Mechanisms</h2>
+      <div class="callout open">
+        <span class="callout-label">Decision Item 5 — Unresolved</span>
+        <p><strong>Quorum Eligibility &amp; Weighting:</strong> Converting reactions into structured Decision records is an improvement, but treating every reaction equally is not — an unscoped quorum (any Discord member's emoji) risks formalizing channel popularity into a citable scientific record rather than informed consensus. Voter eligibility (e.g., named contributors on the relevant thread) and weighting are not yet specified.</p>
+      </div>
+      <div class="callout open">
+        <span class="callout-label">Decision Item 6 — Unresolved</span>
+        <p><strong>Alternative Voting Mechanisms:</strong> Public reactions aren't the only way to register a vote, and won't always be appropriate — a private or silent ballot (e.g., submitted by direct message) may be needed for sensitive decisions. Which mechanisms to support, and when, is a to-do rather than a settled design.</p>
+      </div>
+      <div class="callout note">
+        <p><strong>Governing Principle:</strong> The system is meant to be a resource for governance, not the governor. It records and surfaces consensus-relevant signals — reactions, votes, sign-offs — as structured, citable data. It does not itself adjudicate disputes, set quorum thresholds, or decide who is right; each lab or community keeps that authority.</p>
+      </div>
+
+      <h2 id="agenda-security">Group F: Security &amp; Trust</h2>
+      <div class="callout open">
+        <span class="callout-label">Decision Item 7 — Unresolved</span>
+        <p><strong>LLM Context-Bundle Threat Model:</strong> Context bundles fed to drafting LLMs are assembled automatically from Discord, GitHub, and document content — including, in ONM's case, an open public community. That is a prompt-injection and data-poisoning surface, not only a privacy one: adversarial content in an ingested channel could shape what a grounded LLM writes into a manuscript, which then re-enters the same provenance graph as an <code>originator</code>-attributed artifact. Currently only PII/secret scrubbing is planned. A security threat model for this pathway is needed before Module 1 is wired into an open community, and does not yet exist.</p>
+      </div>
+
+      <h2 id="agenda-flagged">Group G: Flagged in External Review, Not Yet Discussed</h2>
+      <p>The items below were raised in external review of this specification. They have not yet been discussed by pilot stakeholders and are logged here as open questions rather than decisions.</p>
+      <div class="callout open">
+        <span class="callout-label">Open Question</span>
+        <p><strong>Editorial Gate as First-Class Provenance:</strong> Thread, Decision, and Artifact are all modeled as explicit PROV-O primitives with a full audit trail. The Editorial Gate approval that authorizes a bundle to go public currently is not, so "who signed off on making this public" doesn't yet get the same rigor as everything else in the graph. See <a href="model.html#editorial-gate">03 — The Data Model</a>.</p>
+      </div>
+      <div class="callout open">
+        <span class="callout-label">Open Question</span>
+        <p><strong>ORCID Fallback:</strong> The Agent schema assumes an ORCID binding for <code>prov:Person</code>. Not every contributor — students and new researchers especially — will have one at the time of contribution. What is the fallback identifier?</p>
+      </div>
+      <div class="callout open">
+        <span class="callout-label">Open Question</span>
+        <p><strong>Bot &amp; Agent-Originated Messages:</strong> Discord and GitHub already carry CI bots, Q&amp;A bots, and other automated posters, and this is likely to increase rather than decrease. The "every Message has a human author" invariant doesn't yet specify what happens to bot-originated content: drop it, attribute it to whoever operates the bot, or model it as a <code>prov:SoftwareAgent</code>-authored Entity rather than a Message.</p>
+      </div>
+      <div class="callout open">
+        <span class="callout-label">Open Question</span>
+        <p><strong>Anchoring in the Co-Design Tool:</strong> The interactive policy matrix on the landing page pre-selects the "recommended" option on every governance question by default. For a working session meant to be genuinely open deliberation, defaulted selections risk anchoring the outcome before discussion starts. Should defaults be neutral, or more clearly labeled as a starting proposal rather than an active selection?</p>
+      </div>
+
+      <h2 id="roadmap">Phased Implementation Roadmap</h2>
+      <div class="callout note">
+        <p><strong>Status: Unreviewed Draft.</strong> The phasing below is a first-pass engineering estimate and has not been reviewed or committed to by pilot stakeholders. In particular, Phases 0–1 are backend/schema work with no researcher-facing deliverable until Phase 4 (week 15+); whether that sequencing is right, versus shipping a thinner researcher-facing wedge earlier and layering PROV-O/RO-Crate/Zenodo export on top of real usage data, is itself an open question for the working session.</p>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Phase</th><th>Timeline</th><th>Core Deliverables</th><th>Dependencies</th></tr></thead>
+          <tbody>
+          <tr>
+            <td><strong>Phase 0</strong></td>
+            <td>Weeks 1–2</td>
+            <td>Co-design session execution; finalize Pydantic v2 schemas; define SHACL validation profile</td>
+            <td>Working session consensus</td>
+          </tr>
+          <tr>
+            <td><strong>Phase 1</strong></td>
+            <td>Weeks 3–6</td>
+            <td>Generalize ONR ledger into relational graph; add Person vs. SoftwareAgent tables; JSON-LD PROV-O serializer</td>
+            <td>Phase 0 schemas</td>
+          </tr>
+          <tr>
+            <td><strong>Phase 2</strong></td>
+            <td>Weeks 7–10</td>
+            <td>Google Docs comments hook; Fathom transcript webhook; unified secret redaction filters</td>
+            <td>Phase 1 relational core</td>
+          </tr>
+          <tr>
+            <td><strong>Phase 3</strong></td>
+            <td>Weeks 11–14</td>
+            <td>Universal review gate (<code>ops/review_queue.py</code>); RO-Crate 1.1 packager; PDF / CRediT summary renderer</td>
+            <td>Phase 2 adapters</td>
+          </tr>
+          <tr>
+            <td><strong>Phase 4</strong></td>
+            <td>Weeks 15–18</td>
+            <td>Deploy Stanford Workbench &amp; ONM pilots; deposit test bundles to Zenodo; finalize project deliverables</td>
+            <td>Phase 3 packager</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pagenav">
+        <a class="prev" href="standards.html">
+          <span class="dir">Previous</span>
+          <span class="title">← Standards Alignment</span>
+        </a>
+        <a class="next" href="index.html">
+          <span class="dir">Back to Start</span>
+          <span class="title">Executive Landing Page →</span>
+        </a>
+      </div>
+
+    </div>
+  </main>
+</div>
+<script src="assets/nav.js"></script>
+</body>
+</html>

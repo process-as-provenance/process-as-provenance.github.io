@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Process as Provenance — What Already Exists</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div id="site-nav"></div>
+<div class="shell">
+  <div id="sidebar-mount"></div>
+  <main>
+    <div class="doc">
+
+      <p class="eyebrow">02 — What Already Exists</p>
+      <h1>A Generalization Architecture, Not a Greenfield Build</h1>
+      <p class="dek">The Open Neuromorphic bot suite already validates the core provenance loop in production. This audit maps existing components against master specification targets.</p>
+
+      <p class="lede">The ONR pipeline—ONM's production arXiv paper coordination workflow—proves the core loop: message logging, cross-platform identity resolution, community consensus gating, and rendered Markdown handoff bundles. The table below audits current codebase capabilities against the generalized specification.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+          <tr><th>Primitive / Capability</th><th>Current Codebase Component</th><th>Production Capability</th><th>Generalization Delta</th></tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><strong>Thread (Activity)</strong></td>
+            <td><code>ThreadEntry</code> in <code>threads_ledger.json</code></td>
+            <td>Title, category, status, and historical notes traced to <code>source_entry</code></td>
+            <td>Shift from monthly AI batch digests to real-time, event-driven message streaming</td>
+          </tr>
+          <tr>
+            <td><strong>Agent (Actor)</strong></td>
+            <td><code>EntityEntry</code> in <code>entity_glossary.json</code>, <code>services/entity_lookup.py</code></td>
+            <td>Cross-platform alias resolution (Discord, GitHub, Fathom) + identity challenge (<code>/onm-ident-link</code>)</td>
+            <td>Add <code>entity_type</code> (Person vs. SoftwareAgent), model identifiers, affiliations, and ORCID bindings</td>
+          </tr>
+          <tr>
+            <td><strong>Message (Entity)</strong></td>
+            <td><code>ONRDiscussionMessage</code> in arXiv pipeline</td>
+            <td>Author ID, timestamp, and content capture</td>
+            <td>Generalize across all channels with compulsory human author validation</td>
+          </tr>
+          <tr>
+            <td><strong>Artifact (Entity)</strong></td>
+            <td>XML context builder (<code>context_engine/builder.py</code>) &amp; ONR Markdown renderer</td>
+            <td>Redacted multi-source exports in XML and Markdown</td>
+            <td>Implement explicit Author vs. Originator fields, SHA-256 integrity checksums, and PDF rendering</td>
+          </tr>
+          <tr>
+            <td><strong>Decision (Milestone)</strong></td>
+            <td><code>thumbs_up</code> / <code>flame_count</code> reaction thresholds</td>
+            <td>Implicit reaction quorum gating pipeline status</td>
+            <td>Convert implicit reactions into explicit, structured Decision records (question, options, voters, outcome). Voter eligibility and weighting are not yet scoped — an unrestricted "any reaction counts" quorum risks formalizing channel popularity rather than informed consensus. Support for alternative mechanisms (e.g., a private/silent vote submitted by DM) is a candidate for a later phase. The system records and surfaces these signals; it does not set quorum policy itself — each community defines its own.</td>
+          </tr>
+          <tr>
+            <td><strong>Editorial Gate</strong></td>
+            <td><code>ops/review_queue.py</code></td>
+            <td>Human Accept / Reject / Skip loop for internal thread ledger updates</td>
+            <td>Generalize from internal ledger updates to public RO-Crate and Zenodo export authorization. Intended pattern: a bundle's exact contents are drafted and circulated for human sign-off <em>before</em> packaging and DOI minting — this is the primary privacy safeguard, applied while the bundle is still fully editable. Not yet resolved: what happens when a privacy problem is discovered <em>after</em> a DOI already exists (post-hoc redaction of an immutable, checksummed, publicly-cited bundle is a fundamentally harder operation than pre-publication review — see <a href="questions.html#agenda-consent">05 — Open Questions</a>). Also unresolved: Editorial Gate approval itself is not currently modeled as a first-class provenance record the way Thread, Decision, and Artifact are, so "who authorized this to go public" doesn't yet carry the same audit trail as the rest of the graph.</td>
+          </tr>
+          <tr>
+            <td><strong>Omni-Channel Ingestion</strong></td>
+            <td>Discord (wired), GitHub (wired), meeting transcript schema</td>
+            <td>Two production channels with active ingestion</td>
+            <td>Implement Google Docs comment API, Fathom webhook receiver, and email CC adapter</td>
+          </tr>
+          <tr>
+            <td><strong>Data Rights &amp; Consent</strong></td>
+            <td><code>cogs/user_data.py</code></td>
+            <td>Admin-level user role and metadata reporting</td>
+            <td>Build individual opt-out flows, selective redaction, and <code>prov:invalidatedBy</code> retraction graphs. Two distinct cases need separate designs: (1) redaction <em>before</em> packaging, which the pre-publication review gate largely handles, and (2) redaction <em>after</em> a bundle is already checksummed, packaged, and DOI'd. Case (2) is currently unsolved and open — a superseding, re-versioned crate with a new DOI and a tombstone on the original is one candidate, not yet designed or agreed. See <a href="questions.html#agenda-consent">05 — Open Questions</a>.</td>
+          </tr>
+          <tr>
+            <td><strong>Automated / Bot Messages</strong></td>
+            <td><em>Not yet specified</em></td>
+            <td>Discord and GitHub both already carry CI bots, Q&amp;A bots, and other automated posters, unrelated to the human-message pipeline</td>
+            <td><strong>Open question, flagged in external review:</strong> no ingestion rule yet exists for bot-originated content. Candidates: drop it, attribute it to whoever operates the bot, or model it as a <code>prov:SoftwareAgent</code>-authored Entity rather than a Message — preserving the "every Message has a human author" invariant. This needs resolving before Discord/GitHub ingestion is considered generalized, not after.</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="channels">Channel Ingestion Readiness</h2>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Channel</th><th>Implementation Status</th><th>Technical Delta</th></tr></thead>
+          <tbody>
+          <tr><td><strong>Discord</strong></td><td>Production (Wired)</td><td>Enforce compulsory per-message human author mapping at the gateway level</td></tr>
+          <tr><td><strong>GitHub</strong></td><td>Production (Wired)</td><td>Map PR reviews, issue comments, and commit diffs into atomic Message and Artifact pairs</td></tr>
+          <tr><td><strong>Transcripts (Fathom)</strong></td><td>Schema Defined</td><td>Implement live webhook listener to parse speaker turns into sequential Message nodes</td></tr>
+          <tr><td><strong>Google Docs</strong></td><td>Exporter Only</td><td>Connect to Google Docs Revisions &amp; Comments API endpoints for granular comment threads</td></tr>
+          <tr><td><strong>Email (Gmail)</strong></td><td>Not Started</td><td>Deploy dedicated project CC address (<code>archive@project.org</code>) with automated secret scrubbing</td></tr>
+          <tr><td><strong>Slack</strong></td><td>Not Started</td><td>Implement Slack Bolt event listener mirroring Discord adapter architecture</td></tr>
+          <tr><td><strong>Zenodo</strong></td><td>Not Started</td><td>Deploy REST API integration to deposit packaged RO-Crate .zip bundles and receive minted DOIs</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout note">
+        <p><strong>De-Risked Sequencing:</strong> Phase 1 focuses exclusively on generalizing Discord, GitHub, and Google Docs before introducing complex third-party email adapters. See <a href="questions.html#roadmap">05 — Open Questions &amp; Roadmap</a>. Note that this sequencing — and the roadmap generally — is a first-pass engineering draft, not yet reviewed or committed to by pilot stakeholders.</p>
+      </div>
+
+      <div class="pagenav">
+        <a class="prev" href="docs.html">
+          <span class="dir">Previous</span>
+          <span class="title">← Concept &amp; Architecture</span>
+        </a>
+        <a class="next" href="model.html">
+          <span class="dir">Next</span>
+          <span class="title">The Data Model →</span>
+        </a>
+      </div>
+
+    </div>
+  </main>
+</div>
+<script src="assets/nav.js"></script>
+</body>
+</html>
