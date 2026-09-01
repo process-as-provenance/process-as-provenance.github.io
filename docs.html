@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Process as Provenance — Concept & Architecture</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div id="site-nav"></div>
+<div class="shell">
+  <div id="sidebar-mount"></div>
+  <main>
+    <div class="doc">
+
+      <p class="eyebrow">01 — Concept &amp; Architecture</p>
+      <h1>Grounding Scientific Credit in Verifiable Collaboration Footprints</h1>
+      <p class="dek">A functional specification for research collaboration infrastructure, bridging academic neuroscience laboratory workflows and open science communities.</p>
+
+      <p class="lede">Scientific attribution is traditionally settled after research concludes—via coarse author ordering negotiations, historical conventions, or subjective self-reporting. This infrastructure inverts that paradigm: scientific attribution, institutional memory, and citable research objects are derived directly from an auditable, structured log of verified activity (messages, code commits, document reviews, decision milestones, and LLM drafting sessions) recorded across the tools researchers already use.</p>
+
+      <h2 id="stakeholders">Stakeholder-Driven Infrastructure</h2>
+
+      <p>This system is not being designed in an academic vacuum; it is shaped directly by real-world collaboration workflows across two complementary environments:</p>
+
+      <h3>1. Open Neuromorphic (ONM): Hosted Open Research Infrastructure</h3>
+      <p>Open Neuromorphic operates community-wide Discord channels, GitHub repositories, and automated publishing pipelines to coordinate open-source scientific projects. ONM requires institutional infrastructure capable of automatically packaging ongoing discussions and code into scoped, redacted, and citable "Context Bundles" and Research Object Crates (RO-Crates) with minted Zenodo DOIs, replacing manual context collation.</p>
+
+      <h3>2. Sébastien Proulx (Stanford University): Multi-Project Experimental Workbench</h3>
+      <p>Sébastien Proulx is a research scientist and neuroscientist at Stanford University who conducts experimental tests, benchmark suites, and multi-contributor computational projects. His workflow requires a lightweight workbench to track student and researcher contributions across concurrent workstreams, eliminate context loss during lab turnover, and generate defensible attribution matrices for papers and progress reports without dependency on external hosting stacks.</p>
+
+      <div class="callout note">
+        <p><strong>Long-Term Extension:</strong> Modeling researcher–LLM interactions directly within the provenance schema allows drafting sessions, prompt iterations, and AI-assisted derivations to be logged with transparent accountability (Human Accountable Author vs. AI Originator), fully complying with Nature and bioRxiv disclosure mandates.</p>
+      </div>
+
+      <h2 id="why-feasible">Generalizing Running Code: The ONR Precedent</h2>
+
+      <p>This initiative is substantially de-risked because its core architecture is already running in production for a single artifact type: Open Neuromorphic's arXiv-paper coordination pipeline (the ONR pipeline). That pipeline successfully ingests message threads, verifies cross-platform identities, gates status transitions via reaction quorum, and renders Markdown bundles with attribution metadata baked in.</p>
+
+      <p>The engineering challenge is one of <strong>generalization</strong>: extending this proven pattern into a universal data model that supports omni-channel ingestion (Discord, GitHub, Google Docs, meeting transcripts, email) across arbitrary research milestones. See <a href="foundation.html">02 — What Already Exists</a> for a line-by-line codebase audit.</p>
+
+      <h2 id="advantages">Core Architectural Advantages</h2>
+
+      <ul>
+        <li><strong>Empirical Evidence Replaces Self-Reporting:</strong> Authorship and acknowledgments are supported by cryptographic activity logs rather than post-hoc negotiations.</li>
+        <li><strong>Structural Human Accountability for AI:</strong> All communicative acts require a verified human author. Artifacts allow software originators (LLMs) while holding a human accountable for introducing the work into the permanent record.</li>
+        <li><strong>Standardized Ontologies:</strong> Direct alignment with W3C PROV-O, ANSI/NISO CRediT, and RO-Crate 1.1 ensures outputs are immediately interoperable with global academic repositories.</li>
+      </ul>
+
+      <h2 id="challenges">Technical &amp; Governance Focus Areas</h2>
+
+      <ul>
+        <li><strong>Effort Weighting vs. Message Volume:</strong> A naive message or commit counter favors chattiness over insight. The architecture utilizes qualitative CRediT role tagging at milestone reviews rather than raw volume metrics.</li>
+        <li><strong>Privacy and Multi-Channel Consent:</strong> Ingesting external channels (such as email) requires strict opt-in models (e.g., explicit archive CC addresses) and automated PII/secret scrubbing.</li>
+        <li><strong>Editorial Publication Gates:</strong> Promoting private lab discussions to public citable records requires formal human-in-the-loop review queues.</li>
+      </ul>
+
+      <h2 id="documentation-suite">Documentation Structure</h2>
+
+      <ol>
+        <li><strong><a href="docs.html">01 — Concept &amp; Architecture</a></strong> (This Document): Executive framing and stakeholder requirements.</li>
+        <li><strong><a href="foundation.html">02 — What Already Exists</a></strong>: Technical audit of the running ONM Discord bot suite.</li>
+        <li><strong><a href="model.html">03 — The Data Model</a></strong>: PROV-O-aligned primitives, schemas, and relational invariants.</li>
+        <li><strong><a href="standards.html">04 — Standards Alignment</a></strong>: Semantic mapping to W3C PROV-O, CRediT, and RO-Crate.</li>
+        <li><strong><a href="questions.html">05 — Open Questions &amp; Roadmap</a></strong>: Working session co-design agenda and phased build sequence.</li>
+      </ol>
+
+      <div class="pagenav">
+        <a class="prev" href="index.html">
+          <span class="dir">Previous</span>
+          <span class="title">← Executive Landing Page</span>
+        </a>
+        <a class="next" href="foundation.html">
+          <span class="dir">Next</span>
+          <span class="title">What Already Exists →</span>
+        </a>
+      </div>
+
+    </div>
+  </main>
+</div>
+<script src="assets/nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Process as Provenance — Open Questions &amp; Roadmap</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div id="site-nav"></div>
+<div class="shell">
+  <div id="sidebar-mount"></div>
+  <main>
+    <div class="doc">
+
+      <p class="eyebrow">05 — Open Questions &amp; Roadmap</p>
+      <h1>Co-Design Session Agenda and Phased Implementation Plan</h1>
+      <p class="dek">Structured operational decisions to finalize between the Research Lead and Infrastructure Lead.</p>
+
+      <p class="lede">This document frames the concrete co-design agenda for our working session, structured across four policy groups, followed by a phased engineering roadmap.</p>
+
+      <h2 id="agenda-attribution">Group A: Contribution Metrics &amp; CRediT Tagging</h2>
+      <div class="callout open">
+        <span class="callout-label">Decision Item 1</span>
+        <p><strong>Mechanisms for Scoring Effort:</strong> Raw event volume (Discord messages, GitHub commits) biases credit toward chattiness over architectural insight. We propose qualitative CRediT role tagging during milestone reviews, grounded by the event ledger. Does the Research Lead approve milestone role tagging as the primary attribution signal?</p>
+      </div>
+
+      <h2 id="agenda-consent">Group B: Privacy, Redaction, &amp; Email Ingestion</h2>
+      <div class="callout open">
+        <span class="callout-label">Decision Item 2</span>
+        <p><strong>Consent Posture for Email:</strong> Ingesting personal mailboxes creates privacy risks for untracked third parties. We propose Mode 1 (explicit CC to <code>archive@project.org</code>) with automated sender scrubbing. Is this posture sufficient for lab workflows?</p>
+      </div>
+
+      <h2 id="agenda-governance">Group C: Editorial Publication Gates</h2>
+      <div class="callout open">
+        <span class="callout-label">Decision Item 3</span>
+        <p><strong>Authorization for Public Export:</strong> What quorum is required before an internal lab thread is bundled into an RO-Crate and deposited to Zenodo with a public DOI? (Recommended: Project lead or designated co-lead authorization).</p>
+      </div>
+
+      <h2 id="agenda-pilots">Group D: Pilot Selection &amp; Deployment Scope</h2>
+      <div class="callout open">
+        <span class="callout-label">Decision Item 4</span>
+        <p><strong>Phase 1 Deployment Scope:</strong> Selecting active Stanford neuroscience benchmark workstreams (Sébastien Proulx) and one Open Neuromorphic community working group to run the pilot pipeline and validate empirical workflows.</p>
+      </div>
+
+      <h2 id="roadmap">Phased Implementation Roadmap</h2>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Phase</th><th>Timeline</th><th>Core Deliverables</th><th>Dependencies</th></tr></thead>
+          <tbody>
+          <tr>
+            <td><strong>Phase 0</strong></td>
+            <td>Weeks 1–2</td>
+            <td>Co-design session execution; finalize Pydantic v2 schemas; define SHACL validation profile</td>
+            <td>Working session consensus</td>
+          </tr>
+          <tr>
+            <td><strong>Phase 1</strong></td>
+            <td>Weeks 3–6</td>
+            <td>Generalize ONR ledger into relational graph; add Person vs. SoftwareAgent tables; JSON-LD PROV-O serializer</td>
+            <td>Phase 0 schemas</td>
+          </tr>
+          <tr>
+            <td><strong>Phase 2</strong></td>
+            <td>Weeks 7–10</td>
+            <td>Google Docs comments hook; Fathom transcript webhook; unified secret redaction filters</td>
+            <td>Phase 1 relational core</td>
+          </tr>
+          <tr>
+            <td><strong>Phase 3</strong></td>
+            <td>Weeks 11–14</td>
+            <td>Universal review gate (<code>ops/review_queue.py</code>); RO-Crate 1.1 packager; PDF / CRediT summary renderer</td>
+            <td>Phase 2 adapters</td>
+          </tr>
+          <tr>
+            <td><strong>Phase 4</strong></td>
+            <td>Weeks 15–18</td>
+            <td>Deploy Stanford Workbench &amp; ONM pilots; deposit test bundles to Zenodo; finalize project deliverables</td>
+            <td>Phase 3 packager</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pagenav">
+        <a class="prev" href="standards.html">
+          <span class="dir">Previous</span>
+          <span class="title">← Standards Alignment</span>
+        </a>
+        <a class="next" href="index.html">
+          <span class="dir">Back to Start</span>
+          <span class="title">Executive Landing Page →</span>
+        </a>
+      </div>
+
+    </div>
+  </main>
+</div>
+<script src="assets/nav.js"></script>
+</body>
+</html>

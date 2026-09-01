@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Process as Provenance — Standards Alignment</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div id="site-nav"></div>
+<div class="shell">
+  <div id="sidebar-mount"></div>
+  <main>
+    <div class="doc">
+
+      <p class="eyebrow">04 — Standards Alignment</p>
+      <h1>Semantic Interoperability via W3C PROV-O, CRediT, and RO-Crate</h1>
+      <p class="dek">How the provenance graph serializes into standard semantic web ontologies for automated ingestion by Zenodo and academic publishers.</p>
+
+      <p class="lede">Rather than designing a bespoke format, this system implements established scholarly communication standards. The internal relational model maps directly to W3C PROV-O for fine-grained provenance, ANSI/NISO CRediT for contributor roles, and RO-Crate 1.1 for dataset and manuscript packaging.</p>
+
+      <h2 id="provo-mapping">W3C PROV-O Mapping Pattern</h2>
+
+      <p>To record multi-role attribution (Human Accountable Author + AI Content Originator) without violating OWL-DL validation constraints, the system reifies artifact generation using the <strong>Qualified Association</strong> pattern:</p>
+
+      <pre><code>@prefix prov:   &lt;http://www.w3.org/ns/prov#&gt; .
+@prefix pav:    &lt;http://purl.org/pav/&gt; .
+@prefix credit: &lt;http://credit.niso.org/&gt; .
+@prefix onm:    &lt;https://openneuromorphic.org/schema/prov#&gt; .
+@prefix ex:     &lt;https://openneuromorphic.org/project/benchmark/&gt; .
+
+# 1. Agents
+ex:pi_jane a prov:Person, prov:Agent ;
+    prov:actedOnBehalfOf ex:stanford_univ ;
+    onm:orcid "https://orcid.org/0000-0002-1825-0097" .
+
+ex:llm_model a prov:SoftwareAgent, prov:Agent ;
+    onm:modelName "gpt-4o-2026-05-15" .
+
+# 2. Activity: Manuscript Section Drafting
+ex:act_draft_section a prov:Activity ;
+    prov:wasInformedBy ex:thread_latency_opt ;
+    prov:qualifiedAssociation [
+        a prov:Association ;
+        prov:agent ex:pi_jane ;
+        prov:hadRole onm:AccountableAuthor, credit:writing-original-draft
+    ] ;
+    prov:qualifiedAssociation [
+        a prov:Association ;
+        prov:agent ex:llm_model ;
+        prov:hadRole onm:ContentOriginator
+    ] .
+
+# 3. Artifact: Derived Manuscript Section
+ex:sec3_text a prov:Entity ;
+    prov:wasGeneratedBy ex:act_draft_section ;
+    prov:wasAttributedTo ex:pi_jane ;
+    pav:authoredBy ex:pi_jane ;
+    pav:createdWith ex:llm_model .</code></pre>
+
+      <h2 id="credit-roles">NISO CRediT Attribution Layer</h2>
+
+      <p>CRediT provides the vocabulary that raw activity logs summarize into. Rather than relying on simple message counters, milestone activities allow contributors to tag specific CRediT roles (e.g., <em>Conceptualization</em>, <em>Software</em>, <em>Formal Analysis</em>, <em>Writing - Review &amp; Editing</em>), generating an empirical contribution matrix for journal submission.</p>
+
+      <h2 id="ro-crate-packaging">RO-Crate 1.1 Packaging for Zenodo</h2>
+
+      <p>When a milestone is closed, the system packages the message history, code diffs, and PROV-O JSON-LD graph into an RO-Crate archive (<code>ro-crate-metadata.json</code>). This package is deposited via Zenodo REST APIs to receive a persistent DOI for direct citation in journal reference lists.</p>
+
+      <div class="pagenav">
+        <a class="prev" href="model.html">
+          <span class="dir">Previous</span>
+          <span class="title">← The Data Model</span>
+        </a>
+        <a class="next" href="questions.html">
+          <span class="dir">Next</span>
+          <span class="title">Open Questions &amp; Roadmap →</span>
+        </a>
+      </div>
+
+    </div>
+  </main>
+</div>
+<script src="assets/nav.js"></script>
+</body>
+</html>
