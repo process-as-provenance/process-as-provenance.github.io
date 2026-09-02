@@ -62,7 +62,7 @@
         /* ===== Layout Shell ===== */
         .wrap{max-width:1220px; margin:0 auto; padding:0 32px;}
 
-        /* STATIC HEADER (Non-sticky) */
+        /* STATIC HEADER */
         header.masthead{
             border-bottom:2px solid var(--ink);
             padding:24px 0 20px;
@@ -110,13 +110,13 @@
         }
         .hero-note strong{color:var(--seal); font-weight:700;}
 
-        /* ===== PART 1: THE PIPELINE (STABILIZED & HIGH CONTRAST) ===== */
+        /* ===== PART 1: THE PIPELINE ===== */
         .strip-shell{
             background:#181613;
             color:#f7f4ee;
             padding:48px 0 54px;
         }
-        .strip-shell .kicker{color:#38bdf8;} /* High contrast sky blue */
+        .strip-shell .kicker{color:#38bdf8;}
         .strip-shell h2{color:#ffffff;}
         .strip-shell p.section-dek{color:#d5cfc4;}
 
@@ -154,7 +154,7 @@
         .stop.active .stop-label{color:#ffffff; font-weight:700;}
         .stop:hover .stop-label{color:#ffffff;}
 
-        /* STABLE STAGE PANEL: Fixed Min-Height to stop layout jump */
+        /* Fixed Min-Height to eliminate button jumping */
         .stage-panel{
             margin-top:28px;
             background:#221e18;
@@ -171,7 +171,6 @@
         .stage-head{display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid #3d362b;}
         .stage-head h3{color:#ffffff; font-size:1.5rem; margin:0;}
 
-        /* High-Contrast Badge in Stage Header (No Red on Pink) */
         .stage-badge{
             font-family:'IBM Plex Mono',monospace; font-size:0.86rem; font-weight:700;
             padding:6px 14px; border-radius:4px; white-space:nowrap;
@@ -197,7 +196,6 @@
             background:#15130f; border:1px solid #3d362b; border-radius:3px; padding:18px 20px;
             color:#e5dfd3; font-size:1.02rem; line-height:1.55; height:200px; overflow-y:auto;
         }
-        /* High contrast author label */
         .before-box .who{font-family:'IBM Plex Mono',monospace; font-size:0.88rem; font-weight:700; color:#38bdf8; display:block; margin-bottom:8px;}
 
         .after-box{
@@ -208,7 +206,6 @@
         .after-box .field-key{color:#38bdf8; font-weight:600;}
         .after-box .field-val{color:#fef08a;}
 
-        /* High Contrast Standard Tags inside Dark Stage Box */
         .std-tag{
             display:inline-block; margin-bottom:6px;
             font-size:0.78rem; font-weight:700; padding:3px 9px; border-radius:3px;
@@ -263,6 +260,16 @@
             background:#ffffff; border:1.5px solid #cbd5e1; border-radius:4px; overflow:hidden;
             font-family:'IBM Plex Mono', monospace; font-size:0.88rem;
         }
+        .schema-table-clickable{
+            cursor:pointer; transition:all .15s ease;
+        }
+        .schema-table-clickable:hover{
+            border-color:#4f46e5; box-shadow:0 2px 8px rgba(79,70,229,0.1);
+        }
+        .schema-table-clickable.active-field{
+            border-color:#4338ca; box-shadow:0 0 0 2px #6366f1;
+        }
+
         .schema-table-head{
             padding:10px 14px; font-weight:700; display:flex; justify-content:space-between; align-items:center;
             border-bottom:1.5px solid #cbd5e1; font-size:0.84rem;
@@ -277,7 +284,7 @@
         }
         .schema-row:last-child{border-bottom:none;}
         .schema-row:hover{background:#f8fafc;}
-        .schema-row.active-field{background:#e0e7ff; font-weight:700; border-left:3px solid #4338ca;}
+        .schema-row.active-field{background:#e0e7ff; font-weight:700; border-left:4px solid #4338ca;}
         .schema-row .col-name{color:#0f172a; font-weight:600;}
         .schema-row .col-type{color:#64748b; font-size:0.78rem;}
         .schema-row .badge-pill{
@@ -288,10 +295,10 @@
         .field-inspector{
             margin-top:22px; padding:20px 24px; background:var(--paper-2); border:1.5px solid var(--line-strong);
             border-radius:4px; display:grid; grid-template-columns:1.2fr 1fr; gap:20px; align-items:center;
-            min-height:150px;
+            min-height:160px;
         }
         @media (max-width:800px){ .field-inspector{grid-template-columns:1fr;} }
-        .inspector-title{font-size:1.2rem; font-family:'Source Serif 4',serif; font-weight:700; margin-bottom:6px;}
+        .inspector-title{font-size:1.2rem; font-family:'Source Serif 4',serif; font-weight:700; margin-bottom:6px; color:#1c1916;}
         .inspector-desc{font-size:0.98rem; color:var(--ink-soft); margin:0; line-height:1.5;}
 
         /* ===== PART 4: FILE TREE / ZIP ===== */
@@ -353,7 +360,7 @@
     <div class="wrap masthead-row">
         <div>
             <div class="masthead-title">From Scan Review to DOI</div>
-            <span class="masthead-sub">A relational walkthrough</span>
+            <span class="masthead-sub">A relational walkthrough, prepared for Sébastien</span>
         </div>
         <nav class="toc">
             <a href="#strip">1. The Pipeline</a>
@@ -464,7 +471,7 @@
             <span class="kicker">Part 3 — The Data Model</span>
             <h2 class="section-title">The Relational Schema: How Raw Data Builds the Citable Record</h2>
             <p class="section-dek">
-                Instead of an abstract node graph, here is how the data is actually organized. Click any field in the <strong>Derived Artifact Record</strong> (middle) to trace where its data originated and which open standard dictates its structure.
+                Instead of an abstract node graph, here is how the data is actually organized. Click <strong>any field across all three columns</strong> to see its data lineage, semantic rule, and live JSON-LD serialization in the inspector.
             </p>
 
             <div class="schema-studio">
@@ -482,15 +489,15 @@
                                 <span>tbl: discord_messages</span>
                                 <span class="mono text-xs text-slate-500">Source #1</span>
                             </div>
-                            <div class="schema-row" onclick="inspectField('msg_author')">
+                            <div class="schema-row" id="row-msg-author" onclick="inspectField('msg_author', this)">
                                 <span class="col-name">author_orcid</span>
                                 <span class="col-type">VARCHAR(19)</span>
                             </div>
-                            <div class="schema-row" onclick="inspectField('msg_content')">
+                            <div class="schema-row" id="row-msg-content" onclick="inspectField('msg_content', this)">
                                 <span class="col-name">content_body</span>
                                 <span class="col-type">TEXT</span>
                             </div>
-                            <div class="schema-row" onclick="inspectField('msg_sha')">
+                            <div class="schema-row" id="row-msg-sha" onclick="inspectField('msg_sha', this)">
                                 <span class="col-name">sha256_hash</span>
                                 <span class="col-type">CHAR(64)</span>
                             </div>
@@ -502,11 +509,11 @@
                                 <span>tbl: qa_pipeline_runs</span>
                                 <span class="mono text-xs text-slate-500">Source #2</span>
                             </div>
-                            <div class="schema-row" onclick="inspectField('qa_csv')">
+                            <div class="schema-row" id="row-qa-csv" onclick="inspectField('qa_csv', this)">
                                 <span class="col-name">output_csv_hash</span>
                                 <span class="col-type">CHAR(64)</span>
                             </div>
-                            <div class="schema-row" onclick="inspectField('qa_script')">
+                            <div class="schema-row" id="row-qa-script" onclick="inspectField('qa_script', this)">
                                 <span class="col-name">script_commit_sha</span>
                                 <span class="col-type">VARCHAR(40)</span>
                             </div>
@@ -518,11 +525,11 @@
                                 <span>tbl: quorum_decisions</span>
                                 <span class="mono text-xs text-slate-500">Source #3</span>
                             </div>
-                            <div class="schema-row" onclick="inspectField('dec_motion')">
+                            <div class="schema-row" id="row-dec-motion" onclick="inspectField('dec_motion', this)">
                                 <span class="col-name">motion_text</span>
                                 <span class="col-type">VARCHAR(255)</span>
                             </div>
-                            <div class="schema-row" onclick="inspectField('dec_vote')">
+                            <div class="schema-row" id="row-dec-vote" onclick="inspectField('dec_vote', this)">
                                 <span class="col-name">quorum_ratio</span>
                                 <span class="col-type">FLOAT (4/4)</span>
                             </div>
@@ -544,7 +551,7 @@
                                 <span class="badge-pill chip-provo">prov:Entity</span>
                             </div>
 
-                            <div class="schema-row active-field" id="row-id" onclick="inspectField('art_id')">
+                            <div class="schema-row" id="row-art-id" onclick="inspectField('art_id', this)">
                                 <div>
                                     <span class="col-name">id:</span>
                                     <span class="mono" style="color:#312e81; font-size:0.8rem;">artifact:mri_qc_sec2_3</span>
@@ -552,12 +559,12 @@
                                 <span class="col-type">PK / URI</span>
                             </div>
 
-                            <div class="schema-row" id="row-type" onclick="inspectField('art_type')">
+                            <div class="schema-row" id="row-art-type" onclick="inspectField('art_type', this)">
                                 <span class="col-name">type</span>
                                 <span class="badge-pill chip-provo">prov:Entity</span>
                             </div>
 
-                            <div class="schema-row" id="row-derived" onclick="inspectField('art_derived')">
+                            <div class="schema-row" id="row-art-derived" onclick="inspectField('art_derived', this)">
                                 <div>
                                     <span class="col-name">prov:wasDerivedFrom</span>
                                     <div style="font-size:0.75rem; color:#64748b;">[metrics.csv, decision_log]</div>
@@ -565,7 +572,7 @@
                                 <span class="col-type">FK Pointer</span>
                             </div>
 
-                            <div class="schema-row" id="row-author" onclick="inspectField('art_author')">
+                            <div class="schema-row active-field" id="row-art-author" onclick="inspectField('art_author', this)">
                                 <div>
                                     <span class="col-name">pav:authoredBy</span>
                                     <div style="font-size:0.75rem; color:#64748b;">"Sébastien Proulx" (Human)</div>
@@ -573,7 +580,7 @@
                                 <span class="badge-pill chip-pav">PAV Accountable</span>
                             </div>
 
-                            <div class="schema-row" id="row-originator" onclick="inspectField('art_originator')">
+                            <div class="schema-row" id="row-art-originator" onclick="inspectField('art_originator', this)">
                                 <div>
                                     <span class="col-name">pav:createdWith</span>
                                     <div style="font-size:0.75rem; color:#64748b;">"claude-3-7-sonnet" (AI)</div>
@@ -581,7 +588,7 @@
                                 <span class="badge-pill chip-pav">PAV Originator</span>
                             </div>
 
-                            <div class="schema-row" id="row-credit" onclick="inspectField('art_credit')">
+                            <div class="schema-row" id="row-art-credit" onclick="inspectField('art_credit', this)">
                                 <div>
                                     <span class="col-name">credit:hadRole</span>
                                     <div style="font-size:0.75rem; color:#64748b;">[writing-review-editing, methodology]</div>
@@ -589,7 +596,7 @@
                                 <span class="badge-pill chip-credit">CRediT Roles</span>
                             </div>
 
-                            <div class="schema-row" id="row-sha" onclick="inspectField('art_sha')">
+                            <div class="schema-row" id="row-art-sha" onclick="inspectField('art_sha', this)">
                                 <span class="col-name">sha256_checksum</span>
                                 <span class="col-type">CHAR(64)</span>
                             </div>
@@ -603,7 +610,7 @@
                         </div>
 
                         <!-- Standard: W3C PROV-O -->
-                        <div class="schema-table">
+                        <div class="schema-table schema-table-clickable" id="card-std-provo" onclick="inspectField('std_provo', this)">
                             <div class="schema-table-head head-registry">
                                 <span>W3C PROV-O Registry</span>
                                 <span class="badge-pill chip-provo">W3C</span>
@@ -614,7 +621,7 @@
                         </div>
 
                         <!-- Standard: PAV Ontology -->
-                        <div class="schema-table">
+                        <div class="schema-table schema-table-clickable" id="card-std-pav" onclick="inspectField('std_pav', this)">
                             <div class="schema-table-head head-registry">
                                 <span>PAV Ontology Spec</span>
                                 <span class="badge-pill chip-pav">PAV</span>
@@ -625,7 +632,7 @@
                         </div>
 
                         <!-- Standard: NISO CRediT -->
-                        <div class="schema-table">
+                        <div class="schema-table schema-table-clickable" id="card-std-credit" onclick="inspectField('std_credit', this)">
                             <div class="schema-table-head head-registry">
                                 <span>ANSI/NISO CRediT</span>
                                 <span class="badge-pill chip-credit">NISO</span>
@@ -641,15 +648,15 @@
                 <!-- Stabilized Field Inspector Card -->
                 <div class="field-inspector" id="fieldInspectorBox">
                     <div>
-                        <span class="kicker" id="inspStandard" style="margin-bottom:4px; color:#4338ca;">W3C PROV-O Rule</span>
-                        <div class="inspector-title" id="inspTitle">Field: pav:authoredBy</div>
+                        <span class="kicker" id="inspStandard" style="margin-bottom:4px; color:#4338ca;">PAV Ontology (Accountability Constraint)</span>
+                        <div class="inspector-title" id="inspTitle">Target Field: pav:authoredBy (Human Accountable Author)</div>
                         <p class="inspector-desc" id="inspDesc">
-                            Stores the persistent identifier (ORCID) of the human researcher who scientifically verifies and takes ethical responsibility for this text.
+                            Stores Sébastien Proulx's ORCID. Designates the human PI who reviewed, edited, certified, and takes scientific responsibility for the text.
                         </p>
                     </div>
                     <div style="background:#0f172a; padding:16px; border-radius:4px; font-family:'IBM Plex Mono',monospace; font-size:0.84rem; color:#e2e8f0; overflow-x:auto;">
                         <div style="color:#38bdf8; font-weight:700; margin-bottom:4px;">// JSON-LD Serialization</div>
-                        <div id="inspJson">"pav:authoredBy": "https://orcid.org/0000-0002-1825-0097"</div>
+                        <div id="inspJson">"pav:authoredBy": "https://orcid.org/0000-0002-1825-0097",&#10;"rdfs:label": "Sébastien Proulx (Stanford University)"</div>
                     </div>
                 </div>
 
@@ -869,73 +876,131 @@
     setStage(0);
 
     /* ============================================================
-       PART 3: RELATIONAL SCHEMA INTERACTION
+       PART 3: COMPLETE RELATIONAL SCHEMA FIELD DETAILS
     ============================================================ */
     const fieldDetails = {
+        // Column 1: Source Lab Tables
+        msg_author: {
+            std: "W3C PROV-O Agent Rule",
+            title: "Source Field: author_orcid (tbl: discord_messages)",
+            desc: "Stores Elena's verified ORCID (https://orcid.org/0001-9281-4402) bound via the Discord authentication gateway, proving a verified human researcher posted the scan review.",
+            json: `"author": {\n  "@type": "prov:Person",\n  "orcid": "https://orcid.org/0001-9281-4402",\n  "name": "Elena (Postdoc)"\n}`
+        },
+        msg_content: {
+            std: "W3C PROV-O Entity Payload",
+            title: "Source Field: content_body (tbl: discord_messages)",
+            desc: "The raw text capturing the qualitative scan observation: 'sub-042 T1w has severe temporal ringing; FreeSurfer pial surface collapsed into white matter. Extracted Euler number is -94.'",
+            json: `"content": "sub-042 T1w has severe temporal ringing; FreeSurfer pial surface collapsed...",\n"format": "text/markdown",\n"language": "en"`
+        },
+        msg_sha: {
+            std: "Data Integrity & Tamper-Evidence",
+            title: "Source Field: sha256_hash (tbl: discord_messages)",
+            desc: "Cryptographic SHA-256 hash computed at ingestion time to guarantee the chat log cannot be modified after the fact.",
+            json: `"sha256": "3a7b9c1d8e5f2a4b6c8e0d2f4a6b8c0d2e4f6a8b0c2d4e6f8a0b2c4d6e8f0a2b"`
+        },
+        qa_csv: {
+            std: "W3C PROV-O Entity Source",
+            title: "Source Field: output_csv_hash (tbl: qa_pipeline_runs)",
+            desc: "The SHA-256 hash of cohort_euler_metrics.csv containing the quantitative topological defect counts (-94 for sub-042).",
+            json: `"output_file": "cohort_euler_metrics.csv",\n"sha256": "4a8f9b1c78e34a09c21b94ef182a03d7e8291bfa3c678912e45fa78bc9012def"`
+        },
+        qa_script: {
+            std: "ANSI/NISO CRediT (Software Contribution)",
+            title: "Source Field: script_commit_sha (tbl: qa_pipeline_runs)",
+            desc: "The Git commit hash for extract_euler_snr.py, linking the quantitative metrics to the exact version of the Python script used on the compute cluster.",
+            json: `"script": "extract_euler_snr.py",\n"git_commit": "8f3d1e9a2b4c6e8f0a1b3c5d7e9f1a3b5c7d9e1f",\n"credit:role": "credit:software"`
+        },
+        dec_motion: {
+            std: "W3C PROV-O Activity (Proposition)",
+            title: "Source Field: motion_text (tbl: quorum_decisions)",
+            desc: "The formal consensus proposition: 'Exclude scans with Euler number < -70 and SNR < 12.0 (drops sub-042, sub-089)'.",
+            json: `"proposition": "Exclude scans with Euler number < -70 or SNR < 12.0",\n"proposed_by": "https://orcid.org/0000-0002-1825-0097"`
+        },
+        dec_vote: {
+            std: "W3C PROV-O Activity (Quorum Consensus)",
+            title: "Source Field: quorum_ratio (tbl: quorum_decisions)",
+            desc: "Records that 4 out of 4 lab members cast affirmative votes, converting an informal chat reaction into a binding, citable consensus record.",
+            json: `"decision_status": "adopted",\n"quorum_met": true,\n"votes_favor": 4,\n"votes_total": 4`
+        },
+
+        // Column 2: Target Derived Record
         art_id: {
-            std: "W3C PROV-O Primitive",
-            title: "Column: id (Uniform Resource Identifier)",
-            desc: "The unique primary key for this artifact across all academic databases. Links this text directly to Zenodo and DOI resolvers.",
+            std: "W3C PROV-O Primary Key (URI)",
+            title: "Target Field: id (tbl: artifact_records)",
+            desc: "The globally unique identifier for this artifact across scholarly repositories. Resolves to the permanent Zenodo record.",
             json: `"id": "https://openneuromorphic.org/project/mri/artifact/sec2_3_methods"`
         },
         art_type: {
-            std: "W3C PROV-O Ontology",
-            title: "Column: type (prov:Entity)",
-            desc: "Declares this record as a prov:Entity — a digital research object generated by an activity and attributed to agents.",
+            std: "W3C PROV-O Classification",
+            title: "Target Field: type (prov:Entity)",
+            desc: "Declares Section 2.3 as a prov:Entity — a digital scientific output that was derived from prior activities and datasets.",
             json: `"type": "prov:Entity"`
         },
         art_derived: {
-            std: "W3C PROV-O (Derivation Pointer)",
-            title: "Column: prov:wasDerivedFrom",
-            desc: "Foreign Key pointers linking this manuscript section directly to the input CSV metrics table and the consensus decision record.",
+            std: "W3C PROV-O Lineage (Foreign Keys)",
+            title: "Target Field: prov:wasDerivedFrom",
+            desc: "Foreign Key pointers linking Section 2.3 directly back to the raw Euler CSV metrics and the unanimous quorum decision record.",
             json: `"prov:wasDerivedFrom": [\n  "entity:cohort_euler_metrics_csv",\n  "activity:quorum_decision_euler_cutoff"\n]`
         },
         art_author: {
             std: "PAV Ontology (Accountability Constraint)",
-            title: "Column: pav:authoredBy (Human Accountable Author)",
-            desc: "Stores Sébastien's ORCID. Mandates that a verified human takes scientific and ethical responsibility for the artifact.",
-            json: `"pav:authoredBy": "https://orcid.org/0000-0002-1825-0097"`
+            title: "Target Field: pav:authoredBy (Human Accountable Author)",
+            desc: "Stores Sébastien Proulx's ORCID. Designates the human PI who reviewed, edited, certified, and takes scientific responsibility for the text.",
+            json: `"pav:authoredBy": "https://orcid.org/0000-0002-1825-0097",\n"rdfs:label": "Sébastien Proulx (Stanford University)"`
         },
         art_originator: {
-            std: "PAV Ontology (Software Originator)",
-            title: "Column: pav:createdWith (Generative AI Tool)",
-            desc: "Documents that Claude 3.7 generated the initial text pass, satisfying Nature and bioRxiv AI disclosure policies.",
-            json: `"pav:createdWith": "urn:anthropic:claude-3-7-sonnet"`
+            std: "PAV Ontology (Generative Software Originator)",
+            title: "Target Field: pav:createdWith (Generative AI Tool)",
+            desc: "Records that Claude 3.7 generated the initial text pass from the discussion bundle, satisfying Nature and bioRxiv AI disclosure mandates.",
+            json: `"pav:createdWith": "urn:anthropic:claude-3-7-sonnet",\n"onm:role": "onm:ContentOriginator"`
         },
         art_credit: {
             std: "ANSI/NISO CRediT Taxonomy",
-            title: "Column: credit:hadRole",
-            desc: "Maps the contributor roles for this deliverable to the 14 standard CRediT categories for automatic journal submission.",
+            title: "Target Field: credit:hadRole",
+            desc: "Standardized contributor badges mapped directly from the activity ledger for inclusion in journal authorship disclosure forms.",
             json: `"credit:hadRole": [\n  "credit:writing-review-editing",\n  "credit:methodology"\n]`
         },
         art_sha: {
-            std: "Data Integrity Checksum",
-            title: "Column: sha256_checksum",
-            desc: "A cryptographic hash ensuring the text inside the Zenodo zip cannot be altered without breaking the provenance chain.",
-            json: `"sha256": "8f4c2b9a718d09e33441a29f8c61e4b98711425e76839bc4..."`
+            std: "Cryptographic Integrity Checksum",
+            title: "Target Field: sha256_checksum",
+            desc: "SHA-256 hash guaranteeing that the Section 2.3 protocol PDF packaged into the Zenodo RO-Crate cannot be altered without detection.",
+            json: `"sha256": "8f4c2b9a718d09e33441a29f8c61e4b98711425e76839bc4d0192837465e01ab"`
         },
-        msg_author: {
-            std: "W3C PROV-O Agent",
-            title: "Source Field: author_orcid (discord_messages)",
-            desc: "Points to Elena's verified ORCID ID when she first posted the scan screenshot in Discord.",
-            json: `"author": "https://orcid.org/0001-9281-4402"`
+
+        // Column 3: Standards Registry Cards
+        std_provo: {
+            std: "W3C Recommendation (2013)",
+            title: "Standards Registry: W3C PROV-O",
+            desc: "The global semantic web standard for provenance. Enforces that all artifacts link to who made them (Agent) and through what process (Activity).",
+            json: `@prefix prov: <http://www.w3.org/ns/prov#> .\nex:sec2_3 a prov:Entity ;\n    prov:wasDerivedFrom ex:cohort_euler_metrics_csv ;\n    prov:wasGeneratedBy ex:claude_drafting_activity .`
         },
-        qa_csv: {
-            std: "W3C PROV-O Entity Source",
-            title: "Source Field: output_csv_hash (qa_pipeline_runs)",
-            desc: "The SHA-256 hash of the cohort Euler metrics CSV generated by Elena's script on the cluster.",
-            json: `"csv_hash": "4a8f9b1c78e34a09..."`
+        std_pav: {
+            std: "Academic Ontology (W3C Community)",
+            title: "Standards Registry: PAV (Provenance, Authoring, Versioning)",
+            desc: "Separates scientific and ethical accountability (pav:authoredBy -> Person) from software and tool generation (pav:createdWith -> SoftwareAgent).",
+            json: `@prefix pav: <http://purl.org/pav/> .\nex:sec2_3 pav:authoredBy ex:sebastien_proulx ;\n          pav:createdWith ex:claude_3_7_sonnet .`
         },
-        dec_vote: {
-            std: "W3C PROV-O Activity (Decision)",
-            title: "Source Field: quorum_ratio (quorum_decisions)",
-            desc: "Records that 4 out of 4 lab members approved the Euler < -70 motion before drafting began.",
-            json: `"quorum_passed": true,\n"votes_favor": 4,\n"votes_total": 4`
+        std_credit: {
+            std: "ANSI/NISO Z39.104-2022",
+            title: "Standards Registry: ANSI/NISO CRediT",
+            desc: "14 contributor roles accepted by Nature, Science, Cell, and IEEE to transparently acknowledge multi-author labor (e.g. Investigation vs Software).",
+            json: `@prefix credit: <http://credit.niso.org/> .\nex:sebastien_proulx prov:hadRole credit:writing-review-editing .\nex:elena_postdoc prov:hadRole credit:software, credit:investigation .`
         }
     };
 
-    function inspectField(fieldKey) {
-        const data = fieldDetails[fieldKey] || fieldDetails['art_author'];
+    function inspectField(fieldKey, el) {
+        const data = fieldDetails[fieldKey];
+        if (!data) return;
+
+        // Remove active highlight from all rows and cards
+        document.querySelectorAll('.schema-row, .schema-table-clickable').forEach(r => r.classList.remove('active-field'));
+
+        // Add active highlight to clicked element
+        if (el) {
+            el.classList.add('active-field');
+        }
+
+        // Update Inspector Card
         document.getElementById('inspStandard').innerText = data.std;
         document.getElementById('inspTitle').innerText = data.title;
         document.getElementById('inspDesc').innerText = data.desc;
