@@ -104,9 +104,9 @@
       <nav class="hidden md:flex items-center space-x-6 text-sm font-medium text-slate-600">
         <a href="#overview" class="hover:text-slate-900 transition">Overview</a>
         <a href="#how-it-works" class="hover:text-slate-900 transition">How It Works</a>
+        <a href="#routing-scopes" class="hover:text-slate-900 transition">Routing Tiers</a>
         <a href="#docs-hub" class="hover:text-slate-900 transition">Specification</a>
         <a href="#infrastructure" class="hover:text-slate-900 transition">Workbench</a>
-        <a href="#glossary" class="hover:text-slate-900 transition">Standards</a>
         <a href="#artifacts" class="hover:text-slate-900 transition">Outputs</a>
       </nav>
 
@@ -122,9 +122,6 @@
           <span>Read Spec Suite</span>
           <i data-lucide="arrow-right" class="w-4 h-4"></i>
         </a>
-        <button onclick="window.print()" aria-label="Print page" class="hidden lg:flex px-3 py-2 rounded-lg border border-slate-200 bg-white text-sm font-medium text-slate-600 hover:bg-slate-50 transition items-center gap-1.5 shadow-sm">
-          <i data-lucide="printer" class="w-4 h-4 text-slate-500"></i>
-        </button>
       </div>
     </div>
   </div>
@@ -143,7 +140,7 @@
         Deriving Scientific Credit, Lab Memory, and Citable Artifacts from Daily Research
       </h1>
       <p class="text-base sm:text-lg text-slate-600 leading-relaxed">
-        Modern scientific collaboration is scattered across Discord channels, GitHub repositories, Google Docs comments, meeting transcripts, and LLM drafting sessions. This infrastructure captures the daily collaboration footprint and automatically derives a living, citable W3C PROV-O provenance graph.
+        Modern scientific collaboration is scattered across Discord channels, GitHub repositories, Google Docs comments, meeting transcripts, and LLM drafting sessions. This infrastructure captures the daily collaboration footprint, normalizes it into a W3C PROV-O provenance graph, and routes it dynamically to local lab RAG, federated consortium feeds, or citable Zenodo DOIs.
       </p>
 
       <!-- Primary Action Buttons -->
@@ -152,12 +149,9 @@
           <span>Read Spec Suite</span>
           <i data-lucide="arrow-right" class="w-4 h-4"></i>
         </a>
-        <a href="https://github.com/process-as-provenance/ops-bots" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-lg border border-slate-300 bg-white text-sm font-medium text-slate-700 hover:bg-slate-50 hover:border-slate-400 transition inline-flex items-center gap-2 shadow-sm">
-          <svg class="w-4 h-4 text-slate-800 fill-current" viewBox="0 0 24 24" aria-hidden="true">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
-          </svg>
-          <span>View Codebase (ops-bots PoC)</span>
-          <i data-lucide="external-link" class="w-3.5 h-3.5 text-slate-400"></i>
+        <a href="cheatsheet.html" class="px-4 py-2.5 rounded-lg border border-slate-300 bg-white text-sm font-medium text-slate-700 hover:bg-slate-50 hover:border-slate-400 transition inline-flex items-center gap-2 shadow-sm">
+          <i data-lucide="play-circle" class="w-4 h-4 text-indigo-600"></i>
+          <span>Interactive Lab Walkthrough</span>
         </a>
       </div>
     </div>
@@ -181,7 +175,7 @@
         </div>
 
         <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
-          Coordinates experimental neuroscience test suites, benchmark workflows, and multi-contributor computational projects. Preserves institutional memory across student and researcher transitions, grounds local/cloud LLMs in active research context, and automates progress reporting. The goal is to meet researchers where they already work, not to eliminate every new step — milestone tagging and review sign-offs remain a modest, deliberate ask, and anything that happens purely over email or in an off-the-record call stays outside the system unless someone routes it in.
+          Coordinates experimental neuroscience test suites, benchmark workflows, and multi-contributor computational projects. Preserves institutional memory across student and researcher transitions, grounds local/cloud LLMs in active research context, and unbundles scientific outputs so narrative papers go to prestigious journals while computational engines remain open.
         </p>
 
         <div class="space-y-2.5 pt-2 text-sm">
@@ -191,11 +185,11 @@
           </div>
           <div class="flex items-start gap-2.5 text-slate-700">
             <i data-lucide="check-circle-2" class="w-5 h-5 text-teal-600 flex-shrink-0 mt-0.5"></i>
-            <span><strong>Grounded LLM Drafting:</strong> Supplies token-budgeted project context for manuscript drafting without hallucinations.</span>
+            <span><strong>Private Lab RAG:</strong> Supplies token-budgeted project context for manuscript drafting without public data exposure.</span>
           </div>
           <div class="flex items-start gap-2.5 text-slate-700">
             <i data-lucide="check-circle-2" class="w-5 h-5 text-teal-600 flex-shrink-0 mt-0.5"></i>
-            <span><strong>1-Click Progress Summaries:</strong> Generates LaTeX and PDF reports documenting collaborative milestones.</span>
+            <span><strong>Unbundled Science:</strong> Preserves career advancement via traditional journals while publishing verified RO-Crates.</span>
           </div>
         </div>
       </div>
@@ -216,17 +210,17 @@
         </div>
 
         <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
-          Provides hosted infrastructure across community Discord channels and GitHub repositories. Ingests distributed open discussions, logs consensus milestones across institutions, and packages citable Research Object Crates directly to Zenodo.
+          Provides hosted infrastructure across community Discord channels and GitHub repositories. Ingests distributed open discussions, logs consensus milestones across institutions (such as UK NeuroSync and Strathclyde NSSP), and syndicates feeds across federated learning environments.
         </p>
 
         <div class="space-y-2.5 pt-2 text-sm">
           <div class="flex items-start gap-2.5 text-slate-700">
             <i data-lucide="check-circle-2" class="w-5 h-5 text-teal-600 flex-shrink-0 mt-0.5"></i>
-            <span><strong>Cross-Lab Consensus Logs:</strong> Traces architectural design decisions across distributed research groups.</span>
+            <span><strong>Federated P2P Syndication:</strong> Integrates with CList and open feed readers for cross-consortium project tracking.</span>
           </div>
           <div class="flex items-start gap-2.5 text-slate-700">
             <i data-lucide="check-circle-2" class="w-5 h-5 text-teal-600 flex-shrink-0 mt-0.5"></i>
-            <span><strong>FAIR RO-Crate Packaging:</strong> Automated packaging and deposition to Zenodo with minted DataCite DOIs.</span>
+            <span><strong>Home for the Null Hypothesis:</strong> Rigorously publishes failed replications and hardware deployment bottlenecks.</span>
           </div>
           <div class="flex items-start gap-2.5 text-slate-700">
             <i data-lucide="check-circle-2" class="w-5 h-5 text-teal-600 flex-shrink-0 mt-0.5"></i>
@@ -246,7 +240,7 @@
       <div class="max-w-2xl">
         <span class="text-xs font-mono font-bold text-indigo-600 uppercase tracking-wider block">Lifecycle</span>
         <h2 class="text-2xl sm:text-3xl font-display font-bold text-slate-900 mt-1">The Provenance Loop</h2>
-        <p class="text-sm sm:text-base text-slate-500 mt-1">A big-picture map of how the pieces fit together — from a lab's first policy decisions to a citable, DOI'd record. Governance policy and channel setup are still being finalized in the co-design working session; this is a map of that process, not a control panel for it.</p>
+        <p class="text-sm sm:text-base text-slate-500 mt-1">A big-picture map of how the pieces fit together — from daily research acts to multi-tiered distribution.</p>
       </div>
       <a href="questions.html" class="shrink-0 text-sm font-mono text-indigo-600 hover:text-indigo-800 font-semibold flex items-center gap-1.5 transition">
         Open Questions &amp; Roadmap <i data-lucide="arrow-right" class="w-4 h-4"></i>
@@ -268,8 +262,8 @@
               <i data-lucide="shield-check" class="w-5 h-5"></i>
             </div>
             <div class="space-y-1.5">
-              <h3 class="text-base font-display font-bold text-slate-900">1. Decide Governance</h3>
-              <p class="text-sm text-slate-600 leading-relaxed">The lab or community sets attribution rules, consent posture, and quorum policy in a working session — the platform doesn't assume defaults for you.</p>
+              <h3 class="text-base font-display font-bold text-slate-900">1. Decide Governance &amp; Routing Scope</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">The lab sets default privacy perimeters, attribution rules, and routing policies (local RAG vs. federated consortium vs. public DOI).</p>
               <a href="questions.html" class="text-xs font-mono font-semibold text-indigo-600 hover:text-indigo-800 transition inline-flex items-center gap-1 pt-0.5">Open governance questions <i data-lucide="arrow-right" class="w-3 h-3"></i></a>
             </div>
           </div>
@@ -280,7 +274,7 @@
             </div>
             <div class="space-y-1.5">
               <h3 class="text-base font-display font-bold text-slate-900">2. Connect Channels</h3>
-              <p class="text-sm text-slate-600 leading-relaxed">Discord and GitHub are wired in today; Google Docs, meeting transcripts, and email follow as adapters land.</p>
+              <p class="text-sm text-slate-600 leading-relaxed">Discord and GitHub are wired in today; Google Docs, CList, meeting transcripts, and Overleaf follow via standard adapters.</p>
               <a href="foundation.html#channels" class="text-xs font-mono font-semibold text-teal-700 hover:text-teal-900 transition inline-flex items-center gap-1 pt-0.5">See channel readiness <i data-lucide="arrow-right" class="w-3 h-3"></i></a>
             </div>
           </div>
@@ -295,7 +289,7 @@
       <!-- Tier 2: The ongoing loop -->
       <div class="space-y-4">
         <div class="flex items-center gap-3">
-          <span class="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider">Then It Runs On Its Own</span>
+          <span class="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider">Then It Runs Automatically</span>
           <span class="h-px flex-1 bg-slate-100"></span>
         </div>
 
@@ -307,7 +301,7 @@
             </div>
             <div class="space-y-1.5">
               <h3 class="text-base font-display font-bold text-slate-900">3. Capture</h3>
-              <p class="text-sm text-slate-600 leading-relaxed">Messages, commits, reviews, and reactions are logged automatically in the tools researchers use today.</p>
+              <p class="text-sm text-slate-600 leading-relaxed">Messages, commits, reviews, and testbench runs are logged automatically in the tools researchers use today.</p>
               <a href="https://github.com/process-as-provenance/ops-bots" target="_blank" rel="noopener noreferrer" class="text-xs font-mono font-semibold text-slate-600 hover:text-slate-900 transition inline-flex items-center gap-1 pt-0.5">See ops-bots implementation <i data-lucide="external-link" class="w-3 h-3"></i></a>
             </div>
           </div>
@@ -322,8 +316,8 @@
               <i data-lucide="search" class="w-5 h-5"></i>
             </div>
             <div class="space-y-1.5">
-              <h3 class="text-base font-display font-bold text-slate-900">4. Query</h3>
-              <p class="text-sm text-slate-600 leading-relaxed">Researchers — and their LLMs — pull scoped, token-budgeted Context Bundles grounded in the verified log, instead of stale memory.</p>
+              <h3 class="text-base font-display font-bold text-slate-900">4. Ground &amp; Query</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">Researchers — and their LLMs — pull scoped, token-budgeted Context Bundles grounded in the verified log, eliminating hallucinations.</p>
               <a href="model.html" class="text-xs font-mono font-semibold text-indigo-600 hover:text-indigo-800 transition inline-flex items-center gap-1 pt-0.5">See the data model <i data-lucide="arrow-right" class="w-3 h-3"></i></a>
             </div>
           </div>
@@ -338,8 +332,8 @@
               <i data-lucide="message-square" class="w-5 h-5"></i>
             </div>
             <div class="space-y-1.5">
-              <h3 class="text-base font-display font-bold text-slate-900">5. Discuss &amp; Decide</h3>
-              <p class="text-sm text-slate-600 leading-relaxed">Thread discussions resolve into structured Decision records and milestone CRediT tags — an auditable trail, not a raw message count.</p>
+              <h3 class="text-base font-display font-bold text-slate-900">5. Decide &amp; Tag</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">Discussions resolve into structured Decision records and milestone CRediT tags — an auditable trail, not a raw message count.</p>
               <a href="model.html#decision" class="text-xs font-mono font-semibold text-amber-700 hover:text-amber-900 transition inline-flex items-center gap-1 pt-0.5">See Decision records <i data-lucide="arrow-right" class="w-3 h-3"></i></a>
             </div>
           </div>
@@ -349,14 +343,15 @@
             <i data-lucide="arrow-down" class="block lg:hidden w-5 h-5"></i>
           </div>
 
-          <div class="flex-1 flex flex-col gap-3 p-5 rounded-lg bg-slate-50 border border-slate-200">
-            <div class="w-10 h-10 rounded-lg bg-teal-50 border border-teal-100 flex items-center justify-center text-teal-700">
-              <i data-lucide="archive" class="w-5 h-5"></i>
+          <!-- UPDATED STEP 6: ROUTE & DISTRIBUTE -->
+          <div class="flex-1 flex flex-col gap-3 p-5 rounded-lg bg-teal-50 border border-teal-200">
+            <div class="w-10 h-10 rounded-lg bg-teal-100 border border-teal-200 flex items-center justify-center text-teal-700">
+              <i data-lucide="share-2" class="w-5 h-5"></i>
             </div>
             <div class="space-y-1.5">
-              <h3 class="text-base font-display font-bold text-slate-900">6. Publish</h3>
-              <p class="text-sm text-slate-600 leading-relaxed">Reviewed, checksummed bundles are packaged as an RO-Crate and deposited to Zenodo for a persistent, citable DOI.</p>
-              <a href="standards.html#ro-crate-packaging" class="text-xs font-mono font-semibold text-teal-700 hover:text-teal-900 transition inline-flex items-center gap-1 pt-0.5">See standards alignment <i data-lucide="arrow-right" class="w-3 h-3"></i></a>
+              <h3 class="text-base font-display font-bold text-slate-900">6. Route &amp; Distribute</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">Bundles don't just dump into Zenodo. They route dynamically: ingested into <strong>Local RAG</strong> for lab drafting, syndicated to <strong>CList/P2P feeds</strong> for consortia, or sealed with a <strong>Zenodo DOI</strong> when certified.</p>
+              <a href="#routing-scopes" class="text-xs font-mono font-semibold text-teal-700 hover:text-teal-900 transition inline-flex items-center gap-1 pt-0.5">See the 4 routing tiers <i data-lucide="arrow-right" class="w-3 h-3"></i></a>
             </div>
           </div>
 
@@ -365,6 +360,91 @@
         <div class="flex items-start gap-2 text-xs text-slate-500 pt-1">
           <i data-lucide="repeat" class="w-3.5 h-3.5 text-slate-400 shrink-0 mt-0.5"></i>
           <span>New discussion and commits keep feeding back into Capture — this loop runs for the life of the project, not as a one-off export.</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- NEW SECTION: FOUR WAYS LAB FOOTPRINTS ARE ROUTED -->
+  <!-- ========================================================================= -->
+  <section id="routing-scopes" class="space-y-6 pt-6 border-t border-slate-200">
+    <div class="max-w-3xl">
+      <span class="text-xs font-mono font-bold text-indigo-600 uppercase tracking-wider block">Decoupled Architecture</span>
+      <h2 class="text-2xl sm:text-3xl font-display font-bold text-slate-900 mt-1">Four Ways Lab Footprints Are Reused</h2>
+      <p class="text-sm sm:text-base text-slate-500 mt-1">
+        Answering <em>"Why a DOI for everything?"</em>: Different organizations require different publishing postures. Process as Provenance decouples data collection from public exposure.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+
+      <!-- Scope 1: Local RAG -->
+      <div class="data-card rounded-xl p-6 space-y-3 border-t-4 border-t-indigo-600 flex flex-col justify-between">
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-indigo-50 text-indigo-700 border border-indigo-200">Tier 1: Internal</span>
+            <i data-lucide="database" class="w-4 h-4 text-indigo-600"></i>
+          </div>
+          <h3 class="text-base font-display font-bold text-slate-900">Private Lab RAG</h3>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Ingests daily chat logs, Jupyter outputs, and code commits into a local vector database. Powers Ollama/Claude drafting sessions with zero external data exposure.
+          </p>
+        </div>
+        <div class="text-[11px] font-mono text-slate-500 pt-2 border-t border-slate-100">
+          <strong>Ideal for:</strong> Stanford bench testbeds, private lab onboarding, IP-sensitive projects.
+        </div>
+      </div>
+
+      <!-- Scope 2: Federated CList -->
+      <div class="data-card rounded-xl p-6 space-y-3 border-t-4 border-t-teal-600 flex flex-col justify-between">
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-teal-50 text-teal-700 border border-teal-200">Tier 2: Peer-to-Peer</span>
+            <i data-lucide="rss" class="w-4 h-4 text-teal-600"></i>
+          </div>
+          <h3 class="text-base font-display font-bold text-slate-900">Federated Aggregators</h3>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Syndicates structured progress summaries across institutions using P2P feed architectures like Stephen Downes' CList. Enables collaborative reading, annotating, and gap analysis.
+          </p>
+        </div>
+        <div class="text-[11px] font-mono text-slate-500 pt-2 border-t border-slate-100">
+          <strong>Ideal for:</strong> Multi-university consortia (UK NeuroSync, NSSP Lab, ONM).
+        </div>
+      </div>
+
+      <!-- Scope 3: Funder Horizon -->
+      <div class="data-card rounded-xl p-6 space-y-3 border-t-4 border-t-amber-600 flex flex-col justify-between">
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-amber-50 text-amber-700 border border-amber-200">Tier 3: Discovery</span>
+            <i data-lucide="compass" class="w-4 h-4 text-amber-600"></i>
+          </div>
+          <h3 class="text-base font-display font-bold text-slate-900">Funder &amp; Lab Matching</h3>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Publishes scrubbed, high-level capability digests. Program managers identify active research capacity in real-time, moving beyond multi-month RFP cycles.
+          </p>
+        </div>
+        <div class="text-[11px] font-mono text-slate-500 pt-2 border-t border-slate-100">
+          <strong>Ideal for:</strong> NSF POSE, NIH BRAIN, Sloan Foundation, DARPA sprints.
+        </div>
+      </div>
+
+      <!-- Scope 4: RO-Crate Zenodo -->
+      <div class="data-card rounded-xl p-6 space-y-3 border-t-4 border-t-slate-700 flex flex-col justify-between">
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-200">Tier 4: Citable</span>
+            <i data-lucide="award" class="w-4 h-4 text-slate-700"></i>
+          </div>
+          <h3 class="text-base font-display font-bold text-slate-900">Public RO-Crate DOIs</h3>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Reserved for finalized protocols, verified benchmark suites, and accepted papers. Gated by human editorial review, packaged into RO-Crate 1.1 with DataCite DOIs.
+          </p>
+        </div>
+        <div class="text-[11px] font-mono text-slate-500 pt-2 border-t border-slate-100">
+          <strong>Ideal for:</strong> Published methods, citable datasets, negative results repositories.
         </div>
       </div>
 
@@ -417,7 +497,7 @@
         <div class="space-y-2">
           <div class="text-xs font-mono text-indigo-600 font-bold uppercase">Chapter 03</div>
           <h3 class="text-base font-display font-bold text-slate-900 group-hover:text-indigo-600 transition">The Data Model</h3>
-          <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">Relational entities, PROV-O classes, and the AI author accountability invariant.</p>
+          <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">Relational entities, PROV-O classes, and publication scope enums.</p>
         </div>
         <div class="pt-4 border-t border-slate-100 text-xs font-mono text-slate-400 group-hover:text-indigo-600 flex items-center justify-between font-semibold">
           <span>Read Chapter</span>
@@ -483,7 +563,7 @@
     <div>
       <span class="text-xs font-mono font-bold text-indigo-600 uppercase tracking-wider block">Infrastructure</span>
       <h2 class="text-2xl sm:text-3xl font-display font-bold text-slate-900 mt-1">Everyday Researcher Workbench</h2>
-      <p class="text-sm sm:text-base text-slate-500 mt-1">Four core modules that streamline everyday scientific collaboration. The aim is to meet researchers where they already work — Discord, GitHub, docs — rather than invent a new one; it can't capture what happens purely over email or an off-the-record call, and milestone tagging still asks for a few minutes of deliberate human review.</p>
+      <p class="text-sm sm:text-base text-slate-500 mt-1">Four core modules that streamline everyday scientific collaboration across local, federated, and open spaces.</p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -523,7 +603,7 @@
         <div class="w-10 h-10 rounded-lg bg-amber-50 border border-amber-100 flex items-center justify-center text-amber-700">
           <i data-lucide="file-spreadsheet" class="w-5 h-5"></i>
         </div>
-        <h3 class="text-base sm:text-lg font-display font-bold text-slate-900">1-Click Progress &amp; Milestone Reporting</h3>
+        <h3 class="text-base sm:text-lg font-display font-bold text-slate-900">1-Click Progress &amp; Funder Reporting</h3>
         <p class="text-sm text-slate-600 leading-relaxed">
           Compiles annual progress reports for funding agencies, grant milestones, or institutional reviews. Generates formatted LaTeX and PDF summaries documenting collaborative activity, software releases, and student training records.
         </p>
@@ -545,152 +625,6 @@
         <div class="text-xs font-mono text-slate-500 pt-3 border-t border-slate-100 flex items-center gap-2">
           <i data-lucide="archive" class="w-3.5 h-3.5 text-slate-700"></i>
           <span>Outputs: Zenodo RO-Crate .zip, JSON-LD Graph, Summary PDF</span>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ========================================================================= -->
-  <!-- SECTION 5: STANDARDS & ONTOLOGIES GLOSSARY -->
-  <!-- ========================================================================= -->
-  <section id="glossary" class="space-y-6 pt-6 border-t border-slate-200">
-
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
-      <div>
-        <span class="text-xs font-mono font-bold text-indigo-600 uppercase tracking-wider block">Foundations</span>
-        <h2 class="text-2xl sm:text-3xl font-display font-bold text-slate-900 mt-1">Standards &amp; Vocabularies</h2>
-        <p class="text-sm sm:text-base text-slate-500 mt-1">Built entirely on open W3C, ANSI/NISO, and CERN-backed standards to guarantee persistent, non-proprietary scholarly outputs.</p>
-      </div>
-      <!-- Interactive Filter -->
-      <div class="flex items-center space-x-1 text-xs font-mono bg-slate-100 p-1.5 rounded-lg border border-slate-200">
-        <button onclick="filterGlossary('all')" id="tag-all" class="px-3 py-1 rounded bg-white font-bold text-slate-900 shadow-sm">All</button>
-        <button onclick="filterGlossary('provenance')" id="tag-provenance" class="px-3 py-1 rounded text-slate-600 hover:text-slate-900">Provenance</button>
-        <button onclick="filterGlossary('packaging')" id="tag-packaging" class="px-3 py-1 rounded text-slate-600 hover:text-slate-900">Packaging</button>
-        <button onclick="filterGlossary('attribution')" id="tag-attribution" class="px-3 py-1 rounded text-slate-600 hover:text-slate-900">Attribution</button>
-      </div>
-    </div>
-
-    <!-- Grid of 6 Standards Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="glossary-grid">
-
-      <!-- PROV-O -->
-      <div class="data-card rounded-xl p-6 flex flex-col justify-between space-y-4" data-cat="provenance">
-        <div class="space-y-2.5">
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-mono font-semibold px-2.5 py-1 rounded bg-indigo-50 text-indigo-700 border border-indigo-100">W3C Recommendation</span>
-            <span class="text-xs font-mono text-slate-400">Provenance</span>
-          </div>
-          <h3 class="text-lg font-display font-bold text-slate-900">W3C PROV-O</h3>
-          <p class="text-sm text-slate-600 leading-relaxed">
-            Encodes how research entities (<code class="font-mono text-xs text-slate-800 bg-slate-100 px-1.5 py-0.5 rounded">prov:Entity</code>) are generated by activities (<code class="font-mono text-xs text-slate-800 bg-slate-100 px-1.5 py-0.5 rounded">prov:Activity</code>) and attributed to human/software agents (<code class="font-mono text-xs text-slate-800 bg-slate-100 px-1.5 py-0.5 rounded">prov:Agent</code>).
-          </p>
-        </div>
-        <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-mono">
-          <span class="text-slate-500 font-medium">Status: Core Semantic Model</span>
-          <a href="https://www.w3.org/TR/prov-o/" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-800 font-semibold flex items-center gap-1">
-            W3C Spec <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-          </a>
-        </div>
-      </div>
-
-      <!-- RO-Crate -->
-      <div class="data-card rounded-xl p-6 flex flex-col justify-between space-y-4" data-cat="packaging">
-        <div class="space-y-2.5">
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-mono font-semibold px-2.5 py-1 rounded bg-teal-50 text-teal-700 border border-teal-100">Packaging Standard</span>
-            <span class="text-xs font-mono text-slate-400">Packaging</span>
-          </div>
-          <h3 class="text-lg font-display font-bold text-slate-900">RO-Crate 1.1</h3>
-          <p class="text-sm text-slate-600 leading-relaxed">
-            Community-driven standard for packaging research datasets, code diffs, transcripts, and metadata into a self-describing archive based on JSON-LD and Schema.org.
-          </p>
-        </div>
-        <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-mono">
-          <span class="text-slate-500 font-medium">Status: Export Target</span>
-          <a href="https://www.researchobject.org/ro-crate/1.1/" target="_blank" rel="noopener noreferrer" class="text-teal-700 hover:text-teal-900 font-semibold flex items-center gap-1">
-            RO Spec <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-          </a>
-        </div>
-      </div>
-
-      <!-- NISO CRediT -->
-      <div class="data-card rounded-xl p-6 flex flex-col justify-between space-y-4" data-cat="attribution">
-        <div class="space-y-2.5">
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-mono font-semibold px-2.5 py-1 rounded bg-amber-50 text-amber-700 border border-amber-100">ANSI / NISO Standard</span>
-            <span class="text-xs font-mono text-slate-400">Attribution</span>
-          </div>
-          <h3 class="text-lg font-display font-bold text-slate-900">NISO CRediT Taxonomy</h3>
-          <p class="text-sm text-slate-600 leading-relaxed">
-            ANSI/NISO Z39.104-2022 standard defining 14 contributor roles (e.g., <em>Conceptualization</em>, <em>Software</em>, <em>Methodology</em>, <em>Writing</em>) to replace coarse author order debates with transparent matrices.
-          </p>
-        </div>
-        <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-mono">
-          <span class="text-slate-500 font-medium">Status: Contributor Tagging</span>
-          <a href="https://credit.niso.org/" target="_blank" rel="noopener noreferrer" class="text-amber-700 hover:text-amber-900 font-semibold flex items-center gap-1">
-            Taxonomy <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-          </a>
-        </div>
-      </div>
-
-      <!-- Zenodo & DataCite -->
-      <div class="data-card rounded-xl p-6 flex flex-col justify-between space-y-4" data-cat="packaging">
-        <div class="space-y-2.5">
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-mono font-semibold px-2.5 py-1 rounded bg-slate-100 text-slate-700 border border-slate-200">Open Repository</span>
-            <span class="text-xs font-mono text-slate-400">Packaging</span>
-          </div>
-          <h3 class="text-lg font-display font-bold text-slate-900">Zenodo &amp; DataCite DOIs</h3>
-          <p class="text-sm text-slate-600 leading-relaxed">
-            CERN-backed open scientific repository providing persistent DOIs for collaboration bundles, code, and datasets for direct citation in academic manuscripts.
-          </p>
-        </div>
-        <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-mono">
-          <span class="text-slate-500 font-medium">Status: Deposition Target</span>
-          <a href="https://zenodo.org/" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-800 font-semibold flex items-center gap-1">
-            Repository <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-          </a>
-        </div>
-      </div>
-
-      <!-- PAV Ontology -->
-      <div class="data-card rounded-xl p-6 flex flex-col justify-between space-y-4" data-cat="provenance">
-        <div class="space-y-2.5">
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-mono font-semibold px-2.5 py-1 rounded bg-indigo-50 text-indigo-700 border border-indigo-100">Academic Ontology</span>
-            <span class="text-xs font-mono text-slate-400">Provenance</span>
-          </div>
-          <h3 class="text-lg font-display font-bold text-slate-900">PAV Ontology</h3>
-          <p class="text-sm text-slate-600 leading-relaxed">
-            Provenance, Authoring, and Versioning extension distinguishing accountable human authorship (<code class="font-mono text-xs text-slate-800 bg-slate-100 px-1.5 py-0.5 rounded">pav:authoredBy</code>) from generative software tooling (<code class="font-mono text-xs text-slate-800 bg-slate-100 px-1.5 py-0.5 rounded">pav:createdWith</code>).
-          </p>
-        </div>
-        <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-mono">
-          <span class="text-slate-500 font-medium">Status: Semantic Layer</span>
-          <a href="https://pav-ontology.github.io/pav/" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-800 font-semibold flex items-center gap-1">
-            Ontology <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-          </a>
-        </div>
-      </div>
-
-      <!-- W3C SHACL -->
-      <div class="data-card rounded-xl p-6 flex flex-col justify-between space-y-4" data-cat="attribution">
-        <div class="space-y-2.5">
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-mono font-semibold px-2.5 py-1 rounded bg-teal-50 text-teal-700 border border-teal-100">Validation Language</span>
-            <span class="text-xs font-mono text-slate-400">Attribution</span>
-          </div>
-          <h3 class="text-lg font-display font-bold text-slate-900">W3C SHACL</h3>
-          <p class="text-sm text-slate-600 leading-relaxed">
-            Shapes Constraint Language enforcing structural graph integrity rules (such as validating that every public communicative act is bound to a verified human accountable author).
-          </p>
-        </div>
-        <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-mono">
-          <span class="text-slate-500 font-medium">Status: Graph Validator</span>
-          <a href="https://www.w3.org/TR/shacl/" target="_blank" rel="noopener noreferrer" class="text-teal-700 hover:text-teal-900 font-semibold flex items-center gap-1">
-            W3C Spec <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-          </a>
         </div>
       </div>
 
@@ -866,7 +800,7 @@
     <div class="rounded-lg bg-slate-50 border border-slate-200 p-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-600">
       <div class="flex items-center gap-2">
         <i data-lucide="layers" class="w-4 h-4 text-indigo-600 shrink-0"></i>
-        <span><strong>Single Source of Truth:</strong> All four outputs compile directly from the immutable, W3C PROV-O activity ledger.</span>
+        <span><strong>Single Source of Truth:</strong> All outputs compile directly from the immutable, W3C PROV-O activity ledger.</span>
       </div>
       <a href="standards.html" class="inline-flex items-center gap-1 font-semibold text-indigo-600 hover:text-indigo-800 transition">
         <span>Explore Standards Specification</span>
@@ -895,31 +829,8 @@
   </div>
 </footer>
 
-<!-- Interactive Logic -->
 <script>
   lucide.createIcons();
-
-  function filterGlossary(category) {
-    const cards = document.querySelectorAll('#glossary-grid [data-cat]');
-    const tags = ['all', 'provenance', 'packaging', 'attribution'];
-
-    tags.forEach(t => {
-      const el = document.getElementById(`tag-${t}`);
-      if (el) {
-        el.className = t === category
-                ? 'px-3 py-1 rounded bg-white font-bold text-slate-900 shadow-sm'
-                : 'px-3 py-1 rounded text-slate-600 hover:text-slate-900';
-      }
-    });
-
-    cards.forEach(card => {
-      if (category === 'all' || card.getAttribute('data-cat') === category) {
-        card.classList.remove('hidden');
-      } else {
-        card.classList.add('hidden');
-      }
-    });
-  }
 </script>
 </body>
 </html>

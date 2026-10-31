@@ -15,7 +15,7 @@
 
       <p class="eyebrow">01 — Concept &amp; Architecture</p>
       <h1>Grounding Scientific Credit in Verifiable Collaboration Footprints</h1>
-      <p class="dek">A functional specification for research collaboration infrastructure, bridging academic neuroscience laboratory workflows and open science communities.</p>
+      <p class="dek">A functional specification for research collaboration infrastructure, bridging academic neuroscience laboratory workflows, federated learning networks, and open science communities.</p>
 
       <p class="lede">Scientific attribution is traditionally settled after research concludes—via coarse author ordering negotiations, historical conventions, or subjective self-reporting. This infrastructure inverts that paradigm: scientific attribution, institutional memory, and citable research objects are derived directly from an auditable, structured log of verified activity (messages, code commits, document reviews, decision milestones, and LLM drafting sessions) recorded across the tools researchers already use.</p>
 
@@ -30,7 +30,7 @@
       <p>Sébastien Proulx is a research scientist and neuroscientist at Stanford University who conducts experimental tests, benchmark suites, and multi-contributor computational projects. His workflow requires a lightweight workbench to track student and researcher contributions across concurrent workstreams, eliminate context loss during lab turnover, and generate defensible attribution matrices for papers and progress reports without dependency on external hosting stacks.</p>
 
       <div class="callout note">
-        <p><strong>Long-Term Extension:</strong> Modeling researcher–LLM interactions directly within the provenance schema allows drafting sessions, prompt iterations, and AI-assisted derivations to be logged with transparent accountability (Human Accountable Author vs. AI Originator), fully complying with Nature and bioRxiv disclosure mandates.</p>
+        <p><strong>Accountable Human-AI Grounding:</strong> Modeling researcher–LLM interactions directly within the provenance schema allows drafting sessions, prompt iterations, and AI-assisted derivations to be logged with transparent accountability (Human Accountable Author vs. AI Originator), fully complying with <em>Nature</em> and <em>bioRxiv</em> disclosure mandates.</p>
       </div>
 
       <h2 id="why-feasible">Generalizing Running Code: The ONR Precedent</h2>
@@ -48,10 +48,72 @@
         <li><strong>Infrastructure, Not Governance:</strong> The platform records and surfaces consensus-relevant signals — reactions, votes, milestone sign-offs — as structured, citable data. It does not itself adjudicate disputes, set quorum thresholds, or decide who is right; each lab or community keeps that authority. The system is a resource for governance, not a substitute for it.</li>
       </ul>
 
+      <!-- ========================================================================= -->
+      <!-- NEW SECTION: TIERED ROUTING ARCHITECTURE -->
+      <!-- ========================================================================= -->
+      <h2 id="tiered-routing">The Multi-Tiered Provenance Architecture: Answering "Why a DOI?"</h2>
+
+      <p>Early iterations of this specification treated public deposition (Zenodo DOIs) as the default destination for all captured research activity. In consultation with open-science infrastructure advisors (notably Alex Wade), we re-evaluated this premise. <strong>Not every lab interaction, daily script run, or sprint debate requires an immutable, globally indexed persistent identifier.</strong> Forcing early-stage, noisy, or confidential research into public DOIs introduces legal friction, privacy hazards, and repository bloat.</p>
+
+      <p>Instead, Process as Provenance implements a <strong>four-tiered distribution and routing model</strong>. Once raw activities are ingested and normalized into the PROV-O ledger, the resulting Context Bundles are routed according to institutional policy and researcher intent:</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+          <tr>
+            <th>Tier &amp; Scope</th>
+            <th>Target Environment</th>
+            <th>Primary Use Case &amp; Ingestion Method</th>
+            <th>Visibility &amp; Permanence</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><strong>Tier 1: Intra-Lab Working Memory</strong></td>
+            <td>Local / Private RAG (Ollama, local Chroma/FAISS)</td>
+            <td>Token-budgeted context for manuscript drafting; graduate student onboarding diffs; zero-amnesia decision trees.</td>
+            <td><strong>Private &amp; Ephemeral:</strong> Stays behind institutional firewalls; continuously updated without public indexing.</td>
+          </tr>
+          <tr>
+            <td><strong>Tier 2: Federated Consortium Mesh</strong></td>
+            <td>Distributed P2P Feeds (e.g., CList, Discourse, RSS-JSON)</td>
+            <td>Cross-lab working groups (e.g., Stanford + ONM + Strathclyde). Bi-directional syndication of project logs and shared testbenches.</td>
+            <td><strong>Consortium-Restricted:</strong> Shared across trusted collaborator nodes without minting global DOIs.</td>
+          </tr>
+          <tr>
+            <td><strong>Tier 3: Funder Discovery &amp; Compliance</strong></td>
+            <td>Program Officer Dashboards &amp; Ecosystem Registries</td>
+            <td>Automated reporting on grant deliverables; real-time capability discovery for philanthropies (Sloan, Schmidt) and agencies (NSF POSE, NIH).</td>
+            <td><strong>Scoped Transparency:</strong> Redacted progress summaries verifying that grant-funded code/data are actively reused.</td>
+          </tr>
+          <tr>
+            <td><strong>Tier 4: Citable Research Objects</strong></td>
+            <td>Global Repositories (Zenodo, DataCite, Publishers)</td>
+            <td>Major project milestones, published protocols, benchmark releases, and negative-result compendiums.</td>
+            <td><strong>Public &amp; Immutable:</strong> Cryptographically checksummed (SHA-256), packaged into RO-Crate 1.1, minted with a DOI.</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ========================================================================= -->
+      <!-- NEW SECTION: UNBUNDLING SCIENCE -->
+      <!-- ========================================================================= -->
+      <h2 id="unbundled-science">Unbundling the Paper: Meeting Academic Realities</h2>
+
+      <p>A central tension in open science is the gap between idealistic transparency and the career pressures of early-career researchers, who are evaluated by hiring and tenure committees on Q1 journal impact factors. Process as Provenance resolves this by <strong>unbundling the scientific contribution</strong>:</p>
+
+      <ul>
+        <li><strong>The Narrative Manuscript:</strong> Authors remain completely free to submit traditional PDF papers to prestigious, peer-reviewed journals (<em>Nature Communications</em>, <em>IEEE RA-L</em>, etc.) to satisfy career and institutional requirements.</li>
+        <li><strong>The Underlying Computational Engine:</strong> PaP runs concurrently in the background, harvesting code diffs, hardware testbenches, prompt traces, and consensus milestones into a living provenance graph.</li>
+        <li><strong>Citable Attribution:</strong> Authors cite their own PaP-generated RO-Crate DOI in their paper's Data &amp; Code Availability statement, proving computational rigor without requiring researchers to compromise their career progression.</li>
+        <li><strong>Valuing What Journals Overlook:</strong> PaP creates first-class citable homes for negative results, hardware post-mortems (e.g., event-camera dynamic range bottlenecks), and failed algorithmic replications that traditional narrative venues routinely reject.</li>
+      </ul>
+
       <h2 id="challenges">Technical &amp; Governance Focus Areas</h2>
 
       <ul>
-        <li><strong>Effort Weighting vs. Message Volume:</strong> A naive message or commit counter favors chattiness over insight. The architecture utilizes qualitative CRediT role tagging at milestone reviews rather than raw volume metrics. Tagging may be AI-assisted — drafted from the activity log as a starting suggestion — but always requires human review before it is recorded. Milestone tagging relocates the credit question rather than fully resolving it; dispute resolution for contested tags is an open design question. See <a href="questions.html#agenda-attribution">05 — Open Questions</a>.</li>
+        <li><strong>Effort Weighting vs. Message Volume:</strong> A naive message or commit counter favors chattiness over insight. The architecture utilizes qualitative CRediT role tagging at milestone reviews rather than raw volume metrics. Tagging may be AI-assisted — drafted from the activity log as a starting suggestion — but always requires human review before it is recorded. Dispute resolution for contested tags is an open design question. See <a href="questions.html#agenda-attribution">05 — Open Questions</a>.</li>
         <li><strong>Privacy and Multi-Channel Consent:</strong> Ingesting external channels (such as email) requires strict opt-in models (e.g., explicit archive CC addresses) and automated PII/secret scrubbing.</li>
         <li><strong>Editorial Publication Gates:</strong> Promoting private lab discussions to public citable records requires formal human-in-the-loop review queues. The intended pattern is that a bundle's exact drafted contents are circulated for sign-off <em>before</em> packaging and checksumming — the main defense against private material becoming a permanent, DOI'd record. What happens if a privacy issue surfaces <em>after</em> a DOI already exists is a harder, unresolved problem. See <a href="questions.html#agenda-consent">05 — Open Questions</a>.</li>
         <li><strong>AI Context-Grounding Security:</strong> Context bundles fed to drafting LLMs are assembled automatically from Discord, GitHub, and document content — including, in ONM's case, an open public community. That is a prompt-injection and data-poisoning surface, not only a privacy one, since a grounded LLM's output re-enters the same provenance graph as an <code>originator</code>-attributed artifact. A threat model for this pathway does not yet exist. See <a href="questions.html#agenda-security">05 — Open Questions</a>.</li>

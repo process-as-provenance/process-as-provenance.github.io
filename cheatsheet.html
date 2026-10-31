@@ -378,13 +378,13 @@
     <section class="hero">
         <div class="wrap hero-grid">
             <div>
-                <h1>One message. Six transformations. One citable record.</h1>
+                <h1>One message. Six transformations. Flexible scholarly routing.</h1>
                 <p class="lede">
-                    This walkthrough follows a single, real lab event — flagging sub‑042's motion artifact in Discord — as it physically turns into structured database rows, an LLM-derived Methods section, and a citable Zenodo package.
+                    This walkthrough follows a single, real lab event — flagging sub‑042's motion artifact in Discord — as it physically turns into structured database rows, an LLM-derived Methods section, and a citable, unbundled research package.
                 </p>
             </div>
             <div class="hero-note">
-                <strong>Why this looks like a foreign language right now:</strong> The data model we outlined together got mapped directly to international standards (W3C PROV‑O, CRediT, PAV, RO‑Crate) so that Zenodo, DataCite, and journal systems can index your lab records without human translation. This guide reverses that: starting with your everyday research, and only showing standard labels once you're looking at the actual data.
+                <strong>Why you don't need a DOI for everything:</strong> Not every casual Discord discussion needs an immutable Zenodo DOI minted immediately. As domain experts like Alex Wade and Christopher Marcum highlighted, early-stage work belongs in private lab RAG or federated P2P feeds (like CList). Public DOIs are reserved for verified milestones, unbundling the narrative paper from its reproducible computational engine.
             </div>
         </div>
     </section>
@@ -393,7 +393,7 @@
     <section class="strip-shell" id="strip">
         <div class="wrap">
             <span class="kicker">Part 1 — The Pipeline</span>
-            <h2 class="section-title">Watch sub-042 become a citable record</h2>
+            <h2 class="section-title">Watch sub-042 become a structured, routable record</h2>
             <p class="section-dek">
                 Step through the six stages. Each stop shows what your lab did on the left, and the exact database record it becomes on the right.
             </p>
@@ -714,7 +714,7 @@
 
 <script>
     /* ============================================================
-       DATA: PIPELINE STAGES
+       DATA: PIPELINE STAGES (UPDATED WITH TIERED ROUTING & UNBUNDLING)
     ============================================================ */
     const stages = [
         {
@@ -783,31 +783,33 @@
         },
         {
             num: "05",
-            label: "Packaged RO-Crate",
-            badge: "RO-Crate 1.1",
-            title: "Everything is packaged into an RO-Crate zip",
-            who: "The Workbench, on Sébastien's sign-off",
-            before: `Sébastien reviews the bundle contents in the editorial queue and signs off. The QA code, CSV, chat log, and PDF protocol are sealed into a zip file.`,
+            label: "Routing & Scoping Gate",
+            badge: "Scope Decision · Local vs. Public",
+            title: "Sébastien chooses the delivery target",
+            who: "Sébastien Proulx, Principal Investigator",
+            before: `Sébastien reviews the bundle in the editorial queue. He asks: "Does this need a permanent public DOI today, or should it stay in our lab RAG for paper drafting?" He selects: Ingest to Lab RAG + Push to Consortium Feed.`,
             after: [
-                { k: "@context", v: '["https://www.researchobject.org/ro-crate/1.1/context.jsonld"]', tag:'rocrate', tip:"Declares the RO-Crate 1.1 JSON-LD context." },
-                { k: "hasPart", v: '[extract_euler.py, metrics.csv, decision_log.json, protocol.pdf]', tag:'rocrate', tip:"Lists every payload file." },
-                { k: "conformsTo", v: '"RO-Crate 1.1"', tag:'rocrate', tip:"Zenodo uses this packing slip to index files automatically." },
+                { k: "type", v: '"prov:Activity (RoutingDecision)"', tag:'provo', tip:"Routing is now an explicit, recorded provenance decision." },
+                { k: "selectedScope", v: '"onm:ScopePrivateLab + onm:ScopeConsortiumFederated"', tag:'rocrate', tip:"Keeps the data accessible to lab LLMs without publishing unverified drafts to the world." },
+                { k: "ragIngestionTarget", v: '"chromadb://lab-cluster:8000/collections/mri_qc"', tag:null },
+                { k: "federatedFeed", v: '"clist://stanford-neuro.clist.muu.ca/stream"', tag:null },
             ],
-            footnote: "An RO-Crate is just a standard zip archive with a machine-readable packing slip (ro-crate-metadata.json) that repositories know how to parse."
+            footnote: "You don't need a DOI for everything! Ingesting to your lab RAG lets you query this decision immediately, while keeping raw artifacts private until paper submission."
         },
         {
             num: "06",
-            label: "Zenodo DOI",
-            badge: "DataCite DOI",
-            title: "Zenodo mints a permanent citation link",
-            who: "Automated via Zenodo REST API",
-            before: `The zip is uploaded to Zenodo. Zenodo mints a permanent, citable DOI that never breaks, even if lab servers change.`,
+            label: "Milestone Zenodo DOI",
+            badge: "Optional High-Water Mark · DataCite DOI",
+            title: "Zenodo seals the final citable package",
+            who: "Triggered only upon formal paper submission or protocol milestone",
+            before: `When the manuscript is finalized for submission to Nature Neuroscience, Sébastien hits "Publish Milestone RO-Crate". The complete bundle, decision logs, and metrics CSV are sealed and minted on Zenodo.`,
             after: [
                 { k: "doi", v: '"10.5281/zenodo.10984210"', tag:null },
-                { k: "citation", v: '"Proulx et al., 2026 (Zenodo RO-Crate)"', tag:null },
+                { k: "citationLink", v: '"Proulx et al., 2026 (Zenodo RO-Crate 1.1)"', tag:'rocrate', tip:"Paste this link into your paper's Data & Code Availability section." },
                 { k: "publisher", v: '"Zenodo / DataCite"', tag:null },
+                { k: "unbundledScience", v: '"Narrative in Journal; Computations on Zenodo"', tag:null },
             ],
-            footnote: "This is the single citation link you paste into your manuscript bibliography. Reviewers click it and get the entire verifiable history."
+            footnote: "This is where science unbundles: your narrative paper goes to a traditional journal for career credit, while the citable Zenodo RO-Crate proves your computational rigor."
         },
     ];
 
@@ -876,10 +878,9 @@
     setStage(0);
 
     /* ============================================================
-       PART 3: COMPLETE RELATIONAL SCHEMA FIELD DETAILS
+       PART 3: RELATIONAL SCHEMA FIELD DETAILS
     ============================================================ */
     const fieldDetails = {
-        // Column 1: Source Lab Tables
         msg_author: {
             std: "W3C PROV-O Agent Rule",
             title: "Source Field: author_orcid (tbl: discord_messages)",
@@ -923,7 +924,7 @@
             json: `"decision_status": "adopted",\n"quorum_met": true,\n"votes_favor": 4,\n"votes_total": 4`
         },
 
-        // Column 2: Target Derived Record
+        // Target Derived Record
         art_id: {
             std: "W3C PROV-O Primary Key (URI)",
             title: "Target Field: id (tbl: artifact_records)",
@@ -967,7 +968,7 @@
             json: `"sha256": "8f4c2b9a718d09e33441a29f8c61e4b98711425e76839bc4d0192837465e01ab"`
         },
 
-        // Column 3: Standards Registry Cards
+        // Standards Registry Cards
         std_provo: {
             std: "W3C Recommendation (2013)",
             title: "Standards Registry: W3C PROV-O",
@@ -992,15 +993,12 @@
         const data = fieldDetails[fieldKey];
         if (!data) return;
 
-        // Remove active highlight from all rows and cards
         document.querySelectorAll('.schema-row, .schema-table-clickable').forEach(r => r.classList.remove('active-field'));
 
-        // Add active highlight to clicked element
         if (el) {
             el.classList.add('active-field');
         }
 
-        // Update Inspector Card
         document.getElementById('inspStandard').innerText = data.std;
         document.getElementById('inspTitle').innerText = data.title;
         document.getElementById('inspDesc').innerText = data.desc;
@@ -1011,7 +1009,7 @@
        PART 4: ZIP FILE TREE
     ============================================================ */
     const files = [
-        { name:"ro-crate-metadata.json", tag:"rocrate", desc:"The machine-readable packing slip. Describes every file in the zip, their authorship, and their PROV-O links using JSON-LD.", origin:"Generated at Stage 05 from the relational ledger." },
+        { name:"ro-crate-metadata.json", tag:"rocrate", desc:"The machine-readable packing slip. Describes every file in the zip, their authorship, and their PROV-O links using JSON-LD.", origin:"Generated at Stage 05/06 from the relational ledger." },
         { name:"cohort_euler_metrics.csv", tag:"provo", desc:"The Euler defect scores and SNR values per subject, generated by Elena's QA script on the cluster.", origin:"Stage 02 — the exact file and checksum that justified the scan exclusion." },
         { name:"scan_review_chat_transcript.md", tag:"provo", desc:"The scrubbed Discord thread where sub-042 was first flagged and discussed.", origin:"Stage 01 — exported as human-readable Markdown." },
         { name:"decision_quorum_log.json", tag:"provo", desc:"The structured record of the 4/4 vote approving the Euler < -70 cutoff.", origin:"Stage 03 — the emoji vote converted into permanent JSON." },
@@ -1036,18 +1034,18 @@
         });
         treeRows.appendChild(row);
     });
-    // Initialize first file detail
     treeDetail.innerHTML = `<h4>${files[0].name}</h4><p>${files[0].desc}</p><div class="std-line">Origin: ${files[0].origin}</div>`;
 
     /* ============================================================
-       PART 5: CHEAT SHEET TABLE
+       PART 5: CHEAT SHEET TABLE (UPDATED)
     ============================================================ */
     const cheatRows = [
-        { lab:"Tracking who inspected scans and decided exclusions", them:"Activity Provenance Graph", std:"W3C PROV-O", cls:"chip-provo" },
+        { lab:"Keeping our discussions inside our lab for LLM drafting", them:"Tier 1: Private Lab RAG Ingestion", std:"Local Vector DB", cls:"chip-provo" },
+        { lab:"Sharing progress with Strathclyde and ONM without a public DOI", them:"Tier 2: Federated P2P Syndication", std:"CList / ActivityPub", cls:"chip-rocrate" },
         { lab:"Crediting the student who ran QA vs. the PI who drafted the paper", them:"Contributor Roles Taxonomy", std:"ANSI/NISO CRediT", cls:"chip-credit" },
         { lab:"I prompted Claude to write it, but I take scientific responsibility", them:"Human Accountable Author vs. Software Originator", std:"PAV Ontology", cls:"chip-pav" },
-        { lab:"Exporting scripts, data, chat logs, and PDF into one zip", them:"Packaging a Research Object", std:"RO-Crate 1.1", cls:"chip-rocrate" },
-        { lab:"Getting a permanent link to cite in our paper bibliography", them:"Minting a Persistent Identifier (PID)", std:"DataCite DOI (Zenodo)", cls:"chip-provo" },
+        { lab:"Exporting verified scripts, data, and protocol into a permanent citable bundle", them:"Tier 4: Citable Research Object", std:"RO-Crate 1.1 + Zenodo DOI", cls:"chip-rocrate" },
+        { lab:"Submitting the paper to Nature while keeping code open on Zenodo", them:"Unbundled Scholarly Communication", std:"Persistent Identifier (PID)", cls:"chip-provo" }
     ];
     const cheatBody = document.getElementById('cheatBody');
     cheatRows.forEach(r => {
