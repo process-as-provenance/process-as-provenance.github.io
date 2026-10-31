@@ -53,9 +53,9 @@
       <!-- ========================================================================= -->
       <h2 id="tiered-routing">The Multi-Tiered Provenance Architecture: Answering "Why a DOI?"</h2>
 
-      <p>Early iterations of this specification treated public deposition (Zenodo DOIs) as the default destination for all captured research activity. In consultation with open-science infrastructure advisors (notably Alex Wade), we re-evaluated this premise. <strong>Not every lab interaction, daily script run, or sprint debate requires an immutable, globally indexed persistent identifier.</strong> Forcing early-stage, noisy, or confidential research into public DOIs introduces legal friction, privacy hazards, and repository bloat.</p>
+      <p>Early iterations of this specification assumed a single pipeline terminating in immediate, public Zenodo DOIs. Feedback from domain experts (notably Alex Wade) highlighted that a one-size-fits-all publishing model fails to serve the diversity of scientific collaboration. Research groups range from radical open-source communities that share every commit in the open, to multi-institutional consortia, to university labs balancing private drafting with grant and IP requirements.</p>
 
-      <p>Instead, Process as Provenance implements a <strong>four-tiered distribution and routing model</strong>. Once raw activities are ingested and normalized into the PROV-O ledger, the resulting Context Bundles are routed according to institutional policy and researcher intent:</p>
+      <p>Rather than prescribing when or how open a team should be, Process as Provenance acts as a neutral infrastructure layer. It decouples verifiable provenance capture from publication velocity, providing four configurable tiers of distribution:</p>
 
       <div class="table-wrap">
         <table>
@@ -72,7 +72,7 @@
             <td><strong>Tier 1: Intra-Lab Working Memory</strong></td>
             <td>Local / Private RAG (Ollama, local Chroma/FAISS)</td>
             <td>Token-budgeted context for manuscript drafting; graduate student onboarding diffs; zero-amnesia decision trees.</td>
-            <td><strong>Private &amp; Ephemeral:</strong> Stays behind institutional firewalls; continuously updated without public indexing.</td>
+            <td><strong>Private &amp; Ephemeral:</strong> Stays within the lab perimeter; continuously updated without public indexing.</td>
           </tr>
           <tr>
             <td><strong>Tier 2: Federated Consortium Mesh</strong></td>

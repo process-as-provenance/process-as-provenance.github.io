@@ -355,7 +355,7 @@
 </head>
 <body>
 
-<!-- STATIC (NON-STICKY) HEADER -->
+<!-- STATIC HEADER -->
 <header class="masthead">
     <div class="wrap masthead-row">
         <div>
@@ -383,8 +383,9 @@
                     This walkthrough follows a single, real lab event — flagging sub‑042's motion artifact in Discord — as it physically turns into structured database rows, an LLM-derived Methods section, and a citable, unbundled research package.
                 </p>
             </div>
+            <!-- REVISED CALLOUT: Respects lab self-determination and pluralism -->
             <div class="hero-note">
-                <strong>Why you don't need a DOI for everything:</strong> Not every casual Discord discussion needs an immutable Zenodo DOI minted immediately. As domain experts highlighted, early-stage work belongs in private lab RAG or federated P2P feeds (like CList). Public DOIs are reserved for verified milestones, unbundling the narrative paper from its reproducible computational engine.
+                <strong>Configurable Openness, From Real-Time Sharing to Milestone DOIs:</strong> Every research group has its own publishing posture. An open-source community might publish discussions publicly in real time, while an experimental lab might run early drafting in a local RAG sandbox or federated feed before minting a persistent Zenodo DOI. Process as Provenance doesn't dictate your release schedule—it captures the work as it happens and lets your lab decide where, when, and how widely each record is shared.
             </div>
         </div>
     </section>
@@ -714,7 +715,7 @@
 
 <script>
     /* ============================================================
-       DATA: PIPELINE STAGES (UPDATED WITH TIERED ROUTING & UNBUNDLING)
+       DATA: PIPELINE STAGES
     ============================================================ */
     const stages = [
         {
@@ -784,32 +785,32 @@
         {
             num: "05",
             label: "Routing & Scoping Gate",
-            badge: "Scope Decision · Local vs. Public",
+            badge: "Scope Decision · Lab Choice",
             title: "Sébastien chooses the delivery target",
             who: "Sébastien Proulx, Principal Investigator",
-            before: `Sébastien reviews the bundle in the editorial queue. He asks: "Does this need a permanent public DOI today, or should it stay in our lab RAG for paper drafting?" He selects: Ingest to Lab RAG + Push to Consortium Feed.`,
+            before: `Sébastien reviews the bundle in the editorial queue. Based on the lab's collaboration goals, he configures how this slice of the graph will route: ingest into the internal lab RAG for drafting, syndicate to the partner consortium feed, or advance to a citable public DOI.`,
             after: [
-                { k: "type", v: '"prov:Activity (RoutingDecision)"', tag:'provo', tip:"Routing is now an explicit, recorded provenance decision." },
-                { k: "selectedScope", v: '"onm:ScopePrivateLab + onm:ScopeConsortiumFederated"', tag:'rocrate', tip:"Keeps the data accessible to lab LLMs without publishing unverified drafts to the world." },
+                { k: "type", v: '"prov:Activity (RoutingDecision)"', tag:'provo', tip:"Routing is an explicit, recorded provenance decision controlled by the team." },
+                { k: "configuredScope", v: '"onm:ScopePrivateLab + onm:ScopeConsortiumFederated"', tag:'rocrate', tip:"Decouples capture from distribution, meeting the team's chosen disclosure timeline." },
                 { k: "ragIngestionTarget", v: '"chromadb://lab-cluster:8000/collections/mri_qc"', tag:null },
                 { k: "federatedFeed", v: '"clist://stanford-neuro.clist.muu.ca/stream"', tag:null },
             ],
-            footnote: "You don't need a DOI for everything! Ingesting to your lab RAG lets you query this decision immediately, while keeping raw artifacts private until paper submission."
+            footnote: "Infrastructure, not governance: Your research team sets the release boundary. Process as Provenance supports continuous open science, consortium syndication, or staged local drafting with equal fidelity."
         },
         {
             num: "06",
             label: "Milestone Zenodo DOI",
-            badge: "Optional High-Water Mark · DataCite DOI",
-            title: "Zenodo seals the final citable package",
-            who: "Triggered only upon formal paper submission or protocol milestone",
-            before: `When the manuscript is finalized for submission to Nature Neuroscience, Sébastien hits "Publish Milestone RO-Crate". The complete bundle, decision logs, and metrics CSV are sealed and minted on Zenodo.`,
+            badge: "Public Deposition · DataCite DOI",
+            title: "Zenodo seals the citable package",
+            who: "Triggered whenever the lab or community elects to mint a public milestone",
+            before: `When the research team elects to release their protocol or paper milestone, Sébastien authorizes public export. The bundle, decision logs, code, and metrics CSV are sealed and minted on Zenodo.`,
             after: [
                 { k: "doi", v: '"10.5281/zenodo.10984210"', tag:null },
                 { k: "citationLink", v: '"Proulx et al., 2026 (Zenodo RO-Crate 1.1)"', tag:'rocrate', tip:"Paste this link into your paper's Data & Code Availability section." },
                 { k: "publisher", v: '"Zenodo / DataCite"', tag:null },
                 { k: "unbundledScience", v: '"Narrative in Journal; Computations on Zenodo"', tag:null },
             ],
-            footnote: "This is where science unbundles: your narrative paper goes to a traditional journal for career credit, while the citable Zenodo RO-Crate proves your computational rigor."
+            footnote: "Unbundling science: your narrative manuscript proceeds through traditional or open journal peer review, while the citable Zenodo RO-Crate permanently anchors the computational foundation."
         },
     ];
 
@@ -1037,7 +1038,7 @@
     treeDetail.innerHTML = `<h4>${files[0].name}</h4><p>${files[0].desc}</p><div class="std-line">Origin: ${files[0].origin}</div>`;
 
     /* ============================================================
-       PART 5: CHEAT SHEET TABLE (UPDATED)
+       PART 5: CHEAT SHEET TABLE
     ============================================================ */
     const cheatRows = [
         { lab:"Keeping our discussions inside our lab for LLM drafting", them:"Tier 1: Private Lab RAG Ingestion", std:"Local Vector DB", cls:"chip-provo" },
